@@ -1,10 +1,10 @@
 jobs:
-- pool: Default
 - job: Build
   displayName: Build Maven Project
   steps:
   - task: Maven@3
     displayName: 'Maven Package'
+    pool: Default
     inputs:
       mavenPomFile: 'pom.xml'
   - task: CopyFiles@2
