@@ -1,5 +1,4 @@
-pool:
-- name: Default
+pool: Default
 jobs:
 - job: Build
   displayName: Build Maven Project
