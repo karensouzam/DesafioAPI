@@ -1,4 +1,5 @@
 jobs:
+- pool: Default
 - job: Build
   displayName: Build Maven Project
   steps:
@@ -14,4 +15,3 @@ jobs:
       TargetFolder: $(Build.ArtifactStagingDirectory)
   - upload: $(Build.ArtifactStagingDirectory)
     artifact: drop
-- pool: Default
