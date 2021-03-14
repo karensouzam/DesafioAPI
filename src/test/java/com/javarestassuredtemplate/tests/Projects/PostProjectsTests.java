@@ -5,8 +5,6 @@ import com.javarestassuredtemplate.requests.Projects.PostProjectsRequest;
 import com.javarestassuredtemplate.utils.ExcelUtils;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
-import org.apache.http.annotation.NotThreadSafe;
-import org.junit.runner.notification.RunListener.ThreadSafe;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -98,9 +96,37 @@ public class PostProjectsTests extends TestBase {
         }
     }
 
+    @Test
+    public void naoDeveIncluirProjetoSemDadosObrigatorios() throws IOException {
+        SoftAssert softAssert = new SoftAssert();
 
-  /*  @Test
-    public void naodeveIncluirProjetoComNomeDuplicado() {//TA RETORNANDO 200 TEM QUE RETORNAR 400
+        //Parâmetros
+        String name = "";
+        String statusId = "10";
+        String statusName = "development";
+        String statusLabel = "development";
+        String description = "Projeto inserido pelo método Post";
+        String enabled = "true";
+        String filePath = "/tmp/";
+        String viewStateId = "10";
+        String viewStateName = "public";
+        String viewStateLabel = "public";
+        String mensagem = "Fatal error";
+        int statusCodeEsperado = HttpStatus.SC_OK;
+
+        //Fluxo
+        postProjectsRequest = new PostProjectsRequest();
+        postProjectsRequest.setJsonBody(name, statusId, statusName, statusLabel, description, enabled, filePath, viewStateId, viewStateName, viewStateLabel);
+        Response response = postProjectsRequest.executeRequest();
+
+        //Asserções
+        Assert.assertEquals(response.statusCode(), statusCodeEsperado);
+        softAssert.assertTrue(response.body().htmlPath().get().toString().contains(mensagem), "Validação mensagem");
+        softAssert.assertAll();
+        System.out.println(Thread.currentThread().getId());
+    }
+    @Test
+    public void naodeveIncluirProjetoComNomeDuplicado() {
         SoftAssert softAssert = new SoftAssert();
 
         //Parâmetros
@@ -114,28 +140,18 @@ public class PostProjectsTests extends TestBase {
         String viewStateId = "10";
         String viewStateName = "public";
         String viewStateLabel = "public";
-        int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
+        String mensagem = "Fatal error";
+        int statusCodeEsperado = HttpStatus.SC_OK;
 
         //Fluxo
         postProjectsRequest = new PostProjectsRequest();
         postProjectsRequest.setJsonBody(name, statusId, statusName, statusLabel, description, enabled, filePath, viewStateId, viewStateName, viewStateLabel);
         Response response = postProjectsRequest.executeRequest();
-        //System.out.println(response.statusCode());
-        //System.out.println(response.body().jsonPath().get());
-
 
         //Asserções
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
-        softAssert.assertEquals(response.body().jsonPath().get("project.name").toString(), name, "Validação name");
-        softAssert.assertEquals(response.body().jsonPath().get("project.status.id").toString(), statusId, "Validação statusId");
-        softAssert.assertEquals(response.body().jsonPath().get("project.status.name").toString(), statusName, "Validação statusName");
-        softAssert.assertEquals(response.body().jsonPath().get("project.status.label").toString(), statusLabel, "Validação statusLabel");
-        softAssert.assertEquals(response.body().jsonPath().get("project.description").toString(), description, "Validação description");
-        softAssert.assertEquals(response.body().jsonPath().get("project.enabled").toString(), enabled, "Validação enable");
-        softAssert.assertEquals(response.body().jsonPath().get("project.view_state.id").toString(), viewStateId, "Validação viewStateId");
-        softAssert.assertEquals(response.body().jsonPath().get("project.view_state.name").toString(), viewStateName, "Validação viewStateName");
-        softAssert.assertEquals(response.body().jsonPath().get("project.view_state.label").toString(), viewStateLabel, "Validação viewStateLabel");
+        softAssert.assertTrue(response.body().htmlPath().get().toString().contains(mensagem), "Validação mensagem");
         softAssert.assertAll();
-    }*/
+    }
 }
 

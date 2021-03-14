@@ -83,7 +83,6 @@ public class ConsultasDBSteps {
         String query = GeneralUtils.readFileToAString(queriesPath + "insereIssueQuery.sql")
                 .replace("$id", id)
                 .replace("$bugTextId", bugTextId);
-
         DBUtils.executeUpdate(query);
     }
 
@@ -96,7 +95,11 @@ public class ConsultasDBSteps {
         String query = GeneralUtils.readFileToAString(queriesPath + "insereIssueQuery.sql")
                 .replace("$id", id)
                 .replace("$bugTextId", bugTextId);
+        DBUtils.executeUpdate(query);
+    }
 
+    public static void insereUsuarioDesprotegido(){
+        String query = GeneralUtils.readFileToAString(queriesPath + "insereUsuarioDesprotegidoQuery.sql");
         DBUtils.executeUpdate(query);
     }
 
@@ -110,6 +113,13 @@ public class ConsultasDBSteps {
     public static ArrayList<String> retornaUsuarios(){
         ArrayList<String> dados;
         String query = GeneralUtils.readFileToAString(queriesPath + "retornaUsuariosQuery.sql");
+        dados = DBUtils.getQueryResult(query);
+        return dados;
+    }
+
+    public static ArrayList<String> retornaUsuarioEspecifico(){
+        ArrayList<String> dados;
+        String query = GeneralUtils.readFileToAString(queriesPath + "retornaUsuarioEspecificoQuery.sql");
         dados = DBUtils.getQueryResult(query);
         return dados;
     }

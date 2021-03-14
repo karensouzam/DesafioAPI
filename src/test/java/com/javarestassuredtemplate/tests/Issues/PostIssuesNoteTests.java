@@ -35,12 +35,44 @@ public class PostIssuesNoteTests extends TestBase {
 
         postIssueNoteRequest = new PostIssueNoteRequest(id);
         postIssueNoteRequest.setJsonBody(issueText, issueName);
-        Response response1 = postIssueNoteRequest.executeRequest();
+        Response responseNote = postIssueNoteRequest.executeRequest();
 
         //Asserções
-        Assert.assertEquals(response1.statusCode(), statusCodeEsperado);
-        softAssert.assertEquals(response1.body().jsonPath().get("note.text").toString(), issueText, "Validação text");
-        softAssert.assertEquals(response1.body().jsonPath().get("note.view_state.name").toString(), issueName, "Validação name");
+        Assert.assertEquals(responseNote.statusCode(), statusCodeEsperado);
+        softAssert.assertEquals(responseNote.body().jsonPath().get("note.text").toString(), issueText, "Validação text");
+        softAssert.assertEquals(responseNote.body().jsonPath().get("note.view_state.name").toString(), issueName, "Validação name");
+        softAssert.assertAll();
+        System.out.println(Thread.currentThread().getId());
+    }
+
+    @Test
+    public void naoDeveIncluirNoteSemDadosObrigatorios() {
+        SoftAssert softAssert = new SoftAssert();
+
+        //Parâmetros
+        String summary ="SUMARIO";
+        String description="DESCRICAO";
+        String categoryName="General";
+        String projectName="PROJETO TESTE 1";
+        String issueText = "";
+        String issueName = "public";
+        String mensagem = "Issue note not specified.";
+        int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
+
+        //Fluxo
+        postProblemasRequest = new PostIssuesRequest();
+        postProblemasRequest.setJsonBody(summary, description, categoryName, projectName);
+        Response response = postProblemasRequest.executeRequest();
+
+        String id = response.body().jsonPath().get("issue.id").toString();
+
+        postIssueNoteRequest = new PostIssueNoteRequest(id);
+        postIssueNoteRequest.setJsonBody(issueText, issueName);
+        Response responseNote = postIssueNoteRequest.executeRequest();
+
+        //Asserções
+        Assert.assertEquals(responseNote.statusCode(), statusCodeEsperado);
+        softAssert.assertEquals(responseNote.body().jsonPath().get("message").toString(), mensagem, "Validação mensagem");
         softAssert.assertAll();
         System.out.println(Thread.currentThread().getId());
     }

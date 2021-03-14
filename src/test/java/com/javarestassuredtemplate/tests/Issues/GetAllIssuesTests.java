@@ -14,7 +14,7 @@ public class GetAllIssuesTests extends TestBase {
     GetAllIssuesRequest getAllIssuesRequest;
 
     @Test
-    public void buscarProblemas(){
+    public void buscarIssue(){
         SoftAssert softAssert = new SoftAssert();
 
         ArrayList<String> projeto = ConsultasDBSteps.retornaProjetos("PROJETO TESTE 1");

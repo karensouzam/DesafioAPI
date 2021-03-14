@@ -12,7 +12,7 @@ public class PostIssuesTests extends TestBase {
     PostIssuesRequest postIssuesRequest;
 
     /*@Test
-    public void deveIncluirIssueComSucesso() {
+    public void deveIncluirIssueComAnexo() {
         SoftAssert softAssert = new SoftAssert();
 
         //Parâmetros
@@ -38,7 +38,7 @@ public class PostIssuesTests extends TestBase {
     }*/
 
     @Test
-    public void deveIncluirIssueComAnexo() {
+    public void deveIncluirIssueComSucesso() {
         SoftAssert softAssert = new SoftAssert();
 
         //Parâmetros

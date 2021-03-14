@@ -5,12 +5,9 @@ import com.javarestassuredtemplate.dbsteps.ConsultasDBSteps;
 import com.javarestassuredtemplate.requests.Projects.GetOnlyProjectRequest;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
-import org.apache.http.annotation.NotThreadSafe;
-import org.junit.runner.notification.RunListener.ThreadSafe;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import java.util.ArrayList;
 
 public class GetOnlyProjectTests extends TestBase {

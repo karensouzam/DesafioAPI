@@ -19,6 +19,7 @@
             <class name = "com.javarestassuredtemplate.tests.Projects.UpdateProjectsTests"/>
             <class name = "com.javarestassuredtemplate.tests.Users.GetMyUserInfoTest"/>
             <class name = "com.javarestassuredtemplate.tests.Users.PostUsuarioTest"/>
+            <class name = "com.javarestassuredtemplate.tests.Users.DeleteUsuarioTest"/>
         </classes>
     </test>
 </suite>
