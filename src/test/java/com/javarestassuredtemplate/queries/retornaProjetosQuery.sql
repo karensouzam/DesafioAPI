@@ -1,0 +1,8 @@
+SELECT ID
+	  ,NAME
+	  ,CASE STATUS WHEN 10 THEN 'development' END AS STATUS
+	  ,DESCRIPTION
+	  ,CASE ENABLED WHEN 1 THEN 'true' END AS ENABLED
+	  ,CASE VIEW_STATE WHEN 10 THEN 'public' END AS VIEW_STATE
+ from mantis_project_table
+ WHERE NAME = '$nome'

@@ -1,0 +1,7 @@
+{
+  "name": "$name",
+  "description": "$description",
+  "released": "$released",
+  "obsolete": "$obsolete",
+  "timestamp": "$timestamp"
+}

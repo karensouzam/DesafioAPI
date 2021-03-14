@@ -1,0 +1,24 @@
+<?xml version ="1.0"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="Parallel Testing Suite">
+    <test name = "Parallel Tests" parallel = "methods" thread-count = "2">
+        <classes>
+            <class name = "com.javarestassuredtemplate.tests.Issues.DeleteIssuesNoteTests"/>
+            <class name = "com.javarestassuredtemplate.tests.Issues.DeleteIssuesTests"/>
+            <class name = "com.javarestassuredtemplate.tests.Issues.GetAllIssuesTests"/>
+            <class name = "com.javarestassuredtemplate.tests.Issues.GetAnIssuesForProjectTests"/>
+            <class name = "com.javarestassuredtemplate.tests.Issues.GetAnIssuesTests"/>
+            <class name = "com.javarestassuredtemplate.tests.Issues.GetIssueFileTests"/>
+            <class name = "com.javarestassuredtemplate.tests.Issues.PostIssuesNoteTests"/>
+            <class name = "com.javarestassuredtemplate.tests.Issues.PostIssuesTests"/>
+            <class name = "com.javarestassuredtemplate.tests.Projects.DeleteProjectTests"/>
+            <class name = "com.javarestassuredtemplate.tests.Projects.GetOnlyProjectTests"/>
+            <class name = "com.javarestassuredtemplate.tests.Projects.GetProjectsTests"/>
+            <class name = "com.javarestassuredtemplate.tests.Projects.PostProjectsTests"/>
+            <class name = "com.javarestassuredtemplate.tests.Projects.PostProjectVersionTests"/>
+            <class name = "com.javarestassuredtemplate.tests.Projects.UpdateProjectsTests"/>
+            <class name = "com.javarestassuredtemplate.tests.Users.GetMyUserInfoTest"/>
+            <class name = "com.javarestassuredtemplate.tests.Users.PostUsuarioTest"/>
+        </classes>
+    </test>
+</suite>

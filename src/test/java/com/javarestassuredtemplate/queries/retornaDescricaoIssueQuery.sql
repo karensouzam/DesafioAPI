@@ -1,0 +1,1 @@
+SELECT ID from mantis_bug_text_table
