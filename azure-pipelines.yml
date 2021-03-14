@@ -6,7 +6,8 @@ jobs:
     displayName: 'Maven Package'
     inputs:
       mavenPomFile: 'pom.xml'
-      pool: Default
+      pool:
+        - name: Default
   - task: CopyFiles@2
     displayName: 'Copy Files to artifact staging directory'
     inputs:
