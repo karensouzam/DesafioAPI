@@ -4,9 +4,9 @@ jobs:
   steps:
   - task: Maven@3
     displayName: 'Maven Package'
-    pool: Default
     inputs:
       mavenPomFile: 'pom.xml'
+      pool: Default
   - task: CopyFiles@2
     displayName: 'Copy Files to artifact staging directory'
     inputs:
