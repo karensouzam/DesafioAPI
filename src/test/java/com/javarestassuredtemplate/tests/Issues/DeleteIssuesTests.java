@@ -34,6 +34,7 @@ public class DeleteIssuesTests extends TestBase{
             softAssert.assertAll();
             System.out.println(Thread.currentThread().getId());
         }
+
         @Test
         public void nadoDeveApagarIssueInexistente(){
             SoftAssert softAssert = new SoftAssert();

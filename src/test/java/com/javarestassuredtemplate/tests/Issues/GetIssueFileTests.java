@@ -29,4 +29,23 @@ public class GetIssueFileTests extends TestBase {
         softAssert.assertAll();
         System.out.println(Thread.currentThread().getId());
     }
+
+    @Test
+    public void naoDevebuscarArquivoInvalido(){
+        SoftAssert softAssert = new SoftAssert();
+
+        //Parâmetros
+        String localized = "Invalid value for 'issue_id";
+        int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
+
+        //Fluxo
+        getIssueFileRequest = new GetIssueFileRequest("0");
+        Response response = getIssueFileRequest.executeRequest();
+
+        //Asserções
+        Assert.assertEquals(response.statusCode(), statusCodeEsperado);
+        softAssert.assertEquals(response.body().jsonPath().get("localized").toString(), localized, "Validação messagem");
+        softAssert.assertAll();
+        System.out.println(Thread.currentThread().getId());
+    }
 }

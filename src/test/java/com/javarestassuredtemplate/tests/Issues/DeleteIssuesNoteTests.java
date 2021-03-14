@@ -51,6 +51,7 @@ public class DeleteIssuesNoteTests extends TestBase{
             System.out.println(Thread.currentThread().getId());
 
         }
+
         @Test
         public void naoDeveapagarIssueNoteInexistente(){
             SoftAssert softAssert = new SoftAssert();
