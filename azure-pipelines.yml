@@ -15,4 +15,4 @@ jobs:
   - upload: $(Build.ArtifactStagingDirectory)
     artifact: drop
 - pool:
-  name: Default
+    name: Default
