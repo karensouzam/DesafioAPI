@@ -2,6 +2,8 @@ jobs:
 - job: Build
   displayName: Build Maven Project
   steps:
+  - pool:
+      name: Default
   - task: Maven@3
     displayName: 'Maven Package'
     inputs:
