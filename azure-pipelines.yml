@@ -1,4 +1,4 @@
-pool: Default
+pool: Karen
 jobs:
 - job: Build
   displayName: Build Maven Project
