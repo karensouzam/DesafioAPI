@@ -25,22 +25,22 @@ public class GetOnlyProjectTests extends TestBase {
         ArrayList<String> list = ConsultasDBSteps.retornaProjetos(nome);
         getOnlyProjectRequest = new GetOnlyProjectRequest(list.get(0));
 
-        String id = "[" + list.get(0) + "]";
-        String projectName = "[" + list.get(1) + "]";
-        String statusName = "[" + list.get(2) + "]";
-        String description = "[" + list.get(3) + "]";
-        String enabled = "[" + list.get(4) + "]";
-        String viewStateName = "[" + list.get(5) + "]";
+        String id = list.get(0);
+        String projectName = list.get(1);
+        String statusName = list.get(2);
+        String description = list.get(3);
+        String enabled = list.get(4);
+        String viewStateName = list.get(5);
 
         Response response = getOnlyProjectRequest.executeRequest();
 
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
-        softAssert.assertEquals(response.body().jsonPath().get("projects.id").toString(), id, "Validação id");
-        softAssert.assertEquals(response.body().jsonPath().get("projects.name").toString(), projectName, "Validação name");
-        softAssert.assertEquals(response.body().jsonPath().get("projects.status.name").toString(), statusName, "Validação status name");
-        softAssert.assertEquals(response.body().jsonPath().get("projects.description").toString(), description, "Validação description");
-        softAssert.assertEquals(response.body().jsonPath().get("projects.enabled").toString(), enabled, "Validação enabled");
-        softAssert.assertEquals(response.body().jsonPath().get("projects.view_state.name").toString(), viewStateName, "Validação viewStateName");
+        softAssert.assertEquals(response.body().jsonPath().get("projects.id[0]").toString(), id, "Validação id");
+        softAssert.assertEquals(response.body().jsonPath().get("projects.name[0]").toString(), projectName, "Validação name");
+        softAssert.assertEquals(response.body().jsonPath().get("projects.status.name[0]").toString(), statusName, "Validação status name");
+        softAssert.assertEquals(response.body().jsonPath().get("projects.description[0]").toString(), description, "Validação description");
+        softAssert.assertEquals(response.body().jsonPath().get("projects.enabled[0]").toString(), enabled, "Validação enabled");
+        softAssert.assertEquals(response.body().jsonPath().get("projects.view_state.name[0]").toString(), viewStateName, "Validação viewStateName");
         softAssert.assertAll();
         System.out.println(Thread.currentThread().getId());
     }
@@ -60,4 +60,5 @@ public class GetOnlyProjectTests extends TestBase {
         softAssert.assertAll();
         System.out.println(Thread.currentThread().getId());
     }
+
 }

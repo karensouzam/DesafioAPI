@@ -31,4 +31,38 @@ public class DeleteProjectTests extends TestBase {
         softAssert.assertAll();
         System.out.println(Thread.currentThread().getId());
     }
+
+    @Test
+    public void naoDeveApagarProjectInexistente(){
+        SoftAssert softAssert = new SoftAssert();
+
+        //Parametros
+        int statusCodeEsperado = HttpStatus.SC_FORBIDDEN;
+
+        //Fluxo
+        deleteProjectRequest = new DeleteProjectRequest("9999");
+        Response response = deleteProjectRequest.executeRequest();
+
+        //Asserções
+        Assert.assertEquals(response.statusCode(), statusCodeEsperado);
+        softAssert.assertAll();
+        System.out.println(Thread.currentThread().getId());
+    }
+
+    @Test
+    public void naoDeveApagarProjectComValorInvalido(){
+        SoftAssert softAssert = new SoftAssert();
+
+        //Parametros
+        int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
+
+        //Fluxo
+        deleteProjectRequest = new DeleteProjectRequest("0");
+        Response response = deleteProjectRequest.executeRequest();
+
+        //Asserções
+        Assert.assertEquals(response.statusCode(), statusCodeEsperado);
+        softAssert.assertAll();
+        System.out.println(Thread.currentThread().getId());
+    }
 }

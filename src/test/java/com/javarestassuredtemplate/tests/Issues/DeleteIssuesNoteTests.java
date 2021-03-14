@@ -52,7 +52,7 @@ public class DeleteIssuesNoteTests extends TestBase{
 
         }
         @Test
-        public void apagarIssueNoteInexistente(){
+        public void naoDeveapagarIssueNoteInexistente(){
             SoftAssert softAssert = new SoftAssert();
 
             //Parametros
@@ -64,6 +64,25 @@ public class DeleteIssuesNoteTests extends TestBase{
 
             //Asserções
             Assert.assertEquals(response.statusCode(), statusCodeEsperado);
+            softAssert.assertAll();
+            System.out.println(Thread.currentThread().getId());
+        }
+
+        @Test
+        public void naodDeveapagarIssueNoteInvalido(){
+            SoftAssert softAssert = new SoftAssert();
+
+            //Parametros
+            String localized = "Invalid value for 'id'";
+            int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
+
+            //Fluxo
+            deleteIssuesNoteRequest = new DeleteIssuesNoteRequest("0", "0");
+            Response response = deleteIssuesNoteRequest.executeRequest();
+
+            //Asserções
+            Assert.assertEquals(response.statusCode(), statusCodeEsperado);
+            softAssert.assertTrue(response.body().jsonPath().get("localized").toString().contains(localized), "Validação localized");
             softAssert.assertAll();
             System.out.println(Thread.currentThread().getId());
         }

@@ -85,4 +85,26 @@ public class UpdateProjectsTests extends TestBase {
         softAssert.assertAll();
         System.out.println(Thread.currentThread().getId());
     }
+
+    @Test
+    public void naoDeveAtualizarProjetoInvalido() {
+        SoftAssert softAssert = new SoftAssert();
+
+        //Parâmetros
+        String nome = "PROJETO TESTE 1";
+        String nomeAlterado = "PROJETO TESTE 1 ALTERADO";
+        int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
+
+        //Fluxo
+        String enabled = "true";
+        updateProjectRequest = new UpdateProjectRequest("0");
+        updateProjectRequest.setJsonBody("0", nomeAlterado, enabled);
+        Response response = updateProjectRequest.executeRequest();
+        ArrayList<String> listAlterado = ConsultasDBSteps.retornaProjetoAlterado(nomeAlterado);
+
+        //Asserções
+        Assert.assertEquals(response.statusCode(), statusCodeEsperado);
+        softAssert.assertAll();
+        System.out.println(Thread.currentThread().getId());
+    }
 }

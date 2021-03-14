@@ -34,6 +34,7 @@ public abstract class TestBase {
         apagaIssues();
         apagaIssuesNote();
         apagaIssuesNoteText();
+        apagaVersionProject();
 
         insereDados();
         insereDescricaoProblemas();

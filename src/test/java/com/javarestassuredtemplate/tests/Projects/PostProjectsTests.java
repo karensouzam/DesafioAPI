@@ -125,6 +125,7 @@ public class PostProjectsTests extends TestBase {
         softAssert.assertAll();
         System.out.println(Thread.currentThread().getId());
     }
+
     @Test
     public void naodeveIncluirProjetoComNomeDuplicado() {
         SoftAssert softAssert = new SoftAssert();
@@ -153,5 +154,6 @@ public class PostProjectsTests extends TestBase {
         softAssert.assertTrue(response.body().htmlPath().get().toString().contains(mensagem), "Validação mensagem");
         softAssert.assertAll();
     }
+
 }
 

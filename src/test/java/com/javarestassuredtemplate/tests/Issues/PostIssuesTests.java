@@ -86,4 +86,28 @@ public class PostIssuesTests extends TestBase {
         softAssert.assertAll();
         System.out.println(Thread.currentThread().getId());
     }
+
+    @Test
+    public void naoDeveIncluirIssueEmProjetoInexistente() {
+        SoftAssert softAssert = new SoftAssert();
+
+        //Parâmetros
+        String summary ="SUMARIO";
+        String description="DESCRICAO";
+        String categoryName="General";
+        String projectName="PROJETO";
+        String mensagem= "Project not specified";
+        int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
+
+        //Fluxo
+        postIssuesRequest = new PostIssuesRequest();
+        postIssuesRequest.setJsonBody(summary, description, categoryName, projectName);
+        Response response = postIssuesRequest.executeRequest();
+
+        //Asserções
+        Assert.assertEquals(response.statusCode(), statusCodeEsperado);
+        softAssert.assertEquals(response.body().jsonPath().get("message").toString(), mensagem, "Validação mensagem");
+        softAssert.assertAll();
+        System.out.println(Thread.currentThread().getId());
+    }
 }

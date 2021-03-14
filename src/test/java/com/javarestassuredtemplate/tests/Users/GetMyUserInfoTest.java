@@ -38,5 +38,4 @@ public class GetMyUserInfoTest extends TestBase {
         softAssert.assertAll();
         System.out.println(Thread.currentThread().getId());
     }
-
 }

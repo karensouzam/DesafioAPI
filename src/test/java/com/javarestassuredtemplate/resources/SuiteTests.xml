@@ -16,6 +16,8 @@
             <class name = "com.javarestassuredtemplate.tests.Projects.GetProjectsTests"/>
             <class name = "com.javarestassuredtemplate.tests.Projects.PostProjectsTests"/>
             <class name = "com.javarestassuredtemplate.tests.Projects.PostProjectVersionTests"/>
+            <class name = "com.javarestassuredtemplate.tests.Projects.PostSubProjectsTests"/>
+            <class name = "com.javarestassuredtemplate.tests.Projects.UpdateSubProjectsTests"/>
             <class name = "com.javarestassuredtemplate.tests.Projects.UpdateProjectsTests"/>
             <class name = "com.javarestassuredtemplate.tests.Users.GetMyUserInfoTest"/>
             <class name = "com.javarestassuredtemplate.tests.Users.PostUsuarioTest"/>

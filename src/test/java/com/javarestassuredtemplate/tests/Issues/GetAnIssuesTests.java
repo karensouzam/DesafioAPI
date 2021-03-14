@@ -48,7 +48,7 @@ public class GetAnIssuesTests extends TestBase {
     }
 
     @Test
-    public void buscarIssueInexistente(){
+    public void naoDevebuscarIssueInexistente(){
         SoftAssert softAssert = new SoftAssert();
 
         int statusCodeEsperado = HttpStatus.SC_NOT_FOUND;

@@ -94,4 +94,31 @@ public class PostUsuarioTest extends TestBase  {
         softAssert.assertAll();
         System.out.println(Thread.currentThread().getId());
     }
+
+    @Test
+    public void naoDeveCriarUsuarioComDadosInvalidos(){
+        SoftAssert softAssert = new SoftAssert();
+
+        //Parametros
+        String name = "Usuario2";
+        String password = "123456";
+        String realName = "Usuario inserido pela automação";
+        String email = "1@2.com.br";
+        String accessLevelName = "accessLevelName";
+        String enabled = "true";
+        String protectedJson = "false";
+        String mensagem = "Invalid access level";
+        int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
+
+        //Fluxo
+        postUserRequest = new PostUserRequest();
+        postUserRequest.setJsonBody(name, password, realName, email, accessLevelName, enabled, protectedJson);
+        Response response = postUserRequest.executeRequest();
+
+        //Asserções
+        Assert.assertEquals(response.statusCode(), statusCodeEsperado);
+        softAssert.assertTrue(response.body().jsonPath().get("message").toString().contains(mensagem), "Validação name");
+        softAssert.assertAll();
+        System.out.println(Thread.currentThread().getId());
+    }
 }

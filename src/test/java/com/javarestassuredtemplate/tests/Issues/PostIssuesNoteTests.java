@@ -76,4 +76,26 @@ public class PostIssuesNoteTests extends TestBase {
         softAssert.assertAll();
         System.out.println(Thread.currentThread().getId());
     }
+
+    @Test
+    public void naoDeveIncluirNoteEmProjetoInvalido() {
+        SoftAssert softAssert = new SoftAssert();
+
+        //Parâmetros
+        String issueText = "texto";
+        String issueName = "public";
+        String localized = "Issue 9999 not found.";
+        int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
+
+        //Fluxo
+        postIssueNoteRequest = new PostIssueNoteRequest("9999");
+        postIssueNoteRequest.setJsonBody(issueText, issueName);
+        Response responseNote = postIssueNoteRequest.executeRequest();
+
+        //Asserções
+        Assert.assertEquals(responseNote.statusCode(), statusCodeEsperado);
+        softAssert.assertEquals(responseNote.body().jsonPath().get("localized").toString(), localized, "Validação mensagem");
+        softAssert.assertAll();
+        System.out.println(Thread.currentThread().getId());
+    }
 }

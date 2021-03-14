@@ -65,4 +65,33 @@ public class PostProjectVersionTests extends TestBase {
         System.out.println(Thread.currentThread().getId());
     }
 
+    @Test
+    public void naoDeveIncluirVersaoDuplicada() {
+        SoftAssert softAssert = new SoftAssert();
+
+        //Parâmetros
+        String nameProject = "PROJETO TESTE 1";
+        String name = "v2.0.0";
+        String description = "Major new version";
+        String released = "true";
+        String obsolete = "false";
+        String timestamp = "2020-02-20";
+        String mensagem = "";
+        int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
+
+        //Fluxo
+        ArrayList<String> list = ConsultasDBSteps.retornaProjetos(nameProject);
+        projectVersionRequest = new PostProjectVersionRequest(list.get(0));
+        projectVersionRequest.setJsonBody(name, description, released, obsolete, timestamp);
+        Response response = projectVersionRequest.executeRequest();
+        projectVersionRequest = new PostProjectVersionRequest("9999");
+        projectVersionRequest.setJsonBody(name, description, released, obsolete, timestamp);
+        Response responseDuplicado = projectVersionRequest.executeRequest();
+
+        //Asserções
+        Assert.assertEquals(responseDuplicado.statusCode(), statusCodeEsperado);
+        softAssert.assertAll();
+        System.out.println(Thread.currentThread().getId());
+    }
+
 }

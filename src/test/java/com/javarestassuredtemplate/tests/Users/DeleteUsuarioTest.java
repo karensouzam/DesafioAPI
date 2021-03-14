@@ -67,4 +67,39 @@ public class DeleteUsuarioTest extends TestBase  {
         System.out.println(Thread.currentThread().getId());
     }
 
+    @Test
+    public void naoDeveApagarUsuarioInexistente(){
+        SoftAssert softAssert = new SoftAssert();
+
+        //Parametros
+        int statusCodeEsperado = HttpStatus.SC_NO_CONTENT;
+
+        //Fluxo
+        deleteUserRequest = new DeleteUserRequest("9999");
+        Response responseDelete = deleteUserRequest.executeRequest();
+
+        //Asserções
+        Assert.assertEquals(responseDelete.statusCode(), statusCodeEsperado);
+        softAssert.assertAll();
+        System.out.println(Thread.currentThread().getId());
+    }
+
+    @Test
+    public void naoDeveApagarUsuarioInvalido(){
+        SoftAssert softAssert = new SoftAssert();
+
+        //Parametros
+        String mensagem = "Invalid user id";
+        int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
+
+        //Fluxo
+        deleteUserRequest = new DeleteUserRequest("0");
+        Response responseDelete = deleteUserRequest.executeRequest();
+
+        //Asserções
+        Assert.assertEquals(responseDelete.statusCode(), statusCodeEsperado);
+        softAssert.assertTrue(responseDelete.body().jsonPath().get("message").toString().contains(mensagem), "Validação mensagem");
+        softAssert.assertAll();
+        System.out.println(Thread.currentThread().getId());
+    }
 }

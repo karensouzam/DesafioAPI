@@ -35,7 +35,7 @@ public class DeleteIssuesTests extends TestBase{
             System.out.println(Thread.currentThread().getId());
         }
         @Test
-        public void apagarIssueInexistente(){
+        public void nadoDeveApagarIssueInexistente(){
             SoftAssert softAssert = new SoftAssert();
 
             //Parametros
@@ -46,6 +46,24 @@ public class DeleteIssuesTests extends TestBase{
             Response response = deleteIssuesRequest.executeRequest();
 
             Assert.assertEquals(response.statusCode(), statusCodeEsperado);
+            softAssert.assertAll();
+            System.out.println(Thread.currentThread().getId());
+        }
+
+        @Test
+        public void naodDeveapagarIssueInvalida(){
+            SoftAssert softAssert = new SoftAssert();
+
+            //Parametros
+            String localized = "Issue 0 not found.";
+            int statusCodeEsperado = HttpStatus.SC_NOT_FOUND;
+
+            //Busca Projeto
+            deleteIssuesRequest = new DeleteIssuesRequest("0");
+            Response response = deleteIssuesRequest.executeRequest();
+
+            Assert.assertEquals(response.statusCode(), statusCodeEsperado);
+            softAssert.assertTrue(response.body().jsonPath().get("localized").toString().contains(localized), "Validação localized");
             softAssert.assertAll();
             System.out.println(Thread.currentThread().getId());
         }

@@ -79,6 +79,11 @@ public class ConsultasDBSteps {
         DBUtils.executeUpdate(query);
     }
 
+    public static void apagaVersionProject(){
+        String query = GeneralUtils.readFileToAString(queriesPath + "apagaVersionProjectQuery.sql");
+        DBUtils.executeUpdate(query);
+    }
+
     public static void insereIssues(String id, String bugTextId){
         String query = GeneralUtils.readFileToAString(queriesPath + "insereIssueQuery.sql")
                 .replace("$id", id)

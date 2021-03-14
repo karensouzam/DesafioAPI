@@ -49,7 +49,7 @@ public class GetAnIssuesForProjectTests extends TestBase {
     }
 
     @Test
-    public void buscarProblemaDeUmProjetoInexistente(){
+    public void naoDevebuscarProblemaDeUmProjetoInexistente(){
         SoftAssert softAssert = new SoftAssert();
 
         //Parâmetros
@@ -62,7 +62,6 @@ public class GetAnIssuesForProjectTests extends TestBase {
 
         //Asserções
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
-        //softAssert.assertEquals(response.body().jsonPath().get("message").toString(), mensagem, "Validação mensagem");
         softAssert.assertAll();
         System.out.println(Thread.currentThread().getId());
     }
