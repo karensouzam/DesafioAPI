@@ -35,7 +35,7 @@ public class GetIssueFileTests extends TestBase {
         SoftAssert softAssert = new SoftAssert();
 
         //Parâmetros
-        String localized = "Invalid value for 'issue_id";
+        String localized = "Invalid value for 'issue_id'";
         int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
 
         //Fluxo

@@ -49,7 +49,6 @@ public class DeleteIssuesNoteTests extends TestBase{
             Assert.assertEquals(response2.statusCode(), statusCodeEsperado);
             softAssert.assertAll();
             System.out.println(Thread.currentThread().getId());
-
         }
 
         @Test

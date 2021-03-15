@@ -8,15 +8,20 @@ import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import java.util.ArrayList;
 
 public class GetAnIssuesForProjectTests extends TestBase {
     GetAnIssueForProjectsRequest getAnIssueForProjectsRequest;
 
     @Test
-    public void buscarProblemaDeUmProjetoEspecifico(){
+    public void buscarIssueDeUmProjetoEspecifico(){
         SoftAssert softAssert = new SoftAssert();
+
+        ConsultasDBSteps.apagaDadosProjeto();
+        ConsultasDBSteps.apagaIssues();
+        ConsultasDBSteps.apagaDescricaoIssue();
+        ConsultasDBSteps.insereDadosProjeto();
+        ConsultasDBSteps.insereDescricaoIssue();
 
         ArrayList<String> projeto = ConsultasDBSteps.retornaProjetos("PROJETO TESTE 1");
         ArrayList <String> descricaoProblema = ConsultasDBSteps.retornaDescricaoIssue();

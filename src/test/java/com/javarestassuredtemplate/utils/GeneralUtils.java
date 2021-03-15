@@ -92,7 +92,11 @@ public class GeneralUtils {
         return ret;
     }
 
-    public static String leitor(String path) throws IOException {
+    public static int getId(){
+        int i = 1 + (int) (Math.random() * 100);
+        return i;
+    }
+    /*public static String leitor(String path) throws IOException {
         BufferedReader buffRead = new BufferedReader(new FileReader(path));
         String linha = "";
         while (true) {
@@ -118,24 +122,5 @@ public class GeneralUtils {
             System.out.println( linha );
         }
         return linhasArquivo;
-    }
-
-
-
-  /*  public static  List<String[]>leitorCSV(String arquivo) throws IOException {
-        Reader reader = Files.newBufferedReader(Paths.get(arquivo));
-        CSVReader csvReader = new CSVReaderBuilder(reader)
-                .withSkipLines(1)//para o caso do CSV ter cabeçalho.
-                .build();
-
-        List<String[]> linhas = csvReader.readAll();
-        List<String[]> coluna;
-        for (String[] linha : linhas)
-            for (coluna : linha)
-                System.out.print(coluna + " # ");
-        System.out.println(linhas);
-        return linhas;
     }*/
-
-
 }

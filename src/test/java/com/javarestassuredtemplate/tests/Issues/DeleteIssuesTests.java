@@ -17,10 +17,15 @@ public class DeleteIssuesTests extends TestBase{
         public void apagarIssue(){
             SoftAssert softAssert = new SoftAssert();
 
+            ConsultasDBSteps.apagaDadosProjeto();
+            ConsultasDBSteps.apagaIssues();
+            ConsultasDBSteps.apagaDescricaoIssue();
+            ConsultasDBSteps.insereDadosProjeto();
+            ConsultasDBSteps.insereDescricaoIssue();
+
             ArrayList<String> projeto = ConsultasDBSteps.retornaProjetos("PROJETO TESTE 1");
             ArrayList <String> descricaoIssue = ConsultasDBSteps.retornaDescricaoIssue();
             ConsultasDBSteps.insereIssues(projeto.get(0), descricaoIssue.get(0));
-
             ArrayList<String> list = ConsultasDBSteps.retornaIssues();
 
             //Parametros
@@ -36,7 +41,7 @@ public class DeleteIssuesTests extends TestBase{
         }
 
         @Test
-        public void nadoDeveApagarIssueInexistente(){
+        public void naoDeveApagarIssueInexistente(){
             SoftAssert softAssert = new SoftAssert();
 
             //Parametros
@@ -52,7 +57,7 @@ public class DeleteIssuesTests extends TestBase{
         }
 
         @Test
-        public void naodDeveapagarIssueInvalida(){
+        public void naoDeveApagarIssueInvalida(){
             SoftAssert softAssert = new SoftAssert();
 
             //Parametros

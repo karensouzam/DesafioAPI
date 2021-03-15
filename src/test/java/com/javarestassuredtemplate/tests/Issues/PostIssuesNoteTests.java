@@ -85,7 +85,7 @@ public class PostIssuesNoteTests extends TestBase {
         String issueText = "texto";
         String issueName = "public";
         String localized = "Issue 9999 not found.";
-        int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
+        int statusCodeEsperado = HttpStatus.SC_NOT_FOUND;
 
         //Fluxo
         postIssueNoteRequest = new PostIssueNoteRequest("9999");

@@ -9,14 +9,14 @@ import java.util.ArrayList;
 public class ConsultasDBSteps {
     private static String queriesPath = System.getProperty("user.dir")+"/src/test/java/com/javarestassuredtemplate/queries/";
 
-    public static ArrayList<String> insereDados(){
+    public static ArrayList<String> insereDadosProjeto(){
         ArrayList<String> dadosProjeto;
         String query = GeneralUtils.readFileToAString(queriesPath + "insereProjetosQuery.sql");
         dadosProjeto = DBUtils.executeUpdate(query);
         return dadosProjeto;
     }
 
-    public static void apagaDados(){
+    public static void apagaDadosProjeto(){
         String query3 = GeneralUtils.readFileToAString(queriesPath + "apagaProjetosQuery.sql");
         DBUtils.executeUpdate(query3);
     }
@@ -42,12 +42,12 @@ public class ConsultasDBSteps {
         return dados;
     }
 
-    public static void apagaDescricaoProblemas(){
+    public static void apagaDescricaoIssue(){
         String query = GeneralUtils.readFileToAString(queriesPath + "apagaDescricaoProblemasQuery.sql");
         DBUtils.executeUpdate(query);
     }
 
-    public static void insereDescricaoProblemas(){
+    public static void insereDescricaoIssue(){
         String query = GeneralUtils.readFileToAString(queriesPath + "insereDescricaoIssuesQuery.sql");
         DBUtils.executeUpdate(query);
     }

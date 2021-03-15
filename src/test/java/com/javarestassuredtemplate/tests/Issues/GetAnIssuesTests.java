@@ -17,10 +17,15 @@ public class GetAnIssuesTests extends TestBase {
     public void buscarIssueEspecifico(){
         SoftAssert softAssert = new SoftAssert();
 
+        ConsultasDBSteps.apagaDadosProjeto();
+        ConsultasDBSteps.apagaIssues();
+        ConsultasDBSteps.apagaDescricaoIssue();
+        ConsultasDBSteps.insereDadosProjeto();
+        ConsultasDBSteps.insereDescricaoIssue();
+
         ArrayList<String> projeto = ConsultasDBSteps.retornaProjetos("PROJETO TESTE 1");
         ArrayList <String> descricaoProblema = ConsultasDBSteps.retornaDescricaoIssue();
         ConsultasDBSteps.insereIssues(projeto.get(0), descricaoProblema.get(0));
-
         ArrayList<String> list = ConsultasDBSteps.retornaIssues();
 
         String id = list.get(6);
