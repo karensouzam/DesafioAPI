@@ -23,6 +23,7 @@ public class UpdateProjectsTests extends TestBase {
        int statusCodeEsperado = HttpStatus.SC_OK;
 
        //Fluxo
+        ConsultasDBSteps.insereDadosProjeto();
         ArrayList<String> list = ConsultasDBSteps.retornaProjetos(nome);
         String id = list.get(0);
         String enabled = list.get(4);
@@ -49,6 +50,7 @@ public class UpdateProjectsTests extends TestBase {
         int statusCodeEsperado = HttpStatus.SC_OK;
 
         //Fluxo
+        ConsultasDBSteps.insereDadosProjeto();
         ArrayList<String> list = ConsultasDBSteps.retornaProjetos(nome);
         String id = list.get(0);
         String enabled = list.get(4);
@@ -68,20 +70,20 @@ public class UpdateProjectsTests extends TestBase {
         SoftAssert softAssert = new SoftAssert();
 
         //Parâmetros
-        String nome = "PROJETO TESTE 1";
         String nomeAlterado = "nome alterado";
-        int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
+        String mensagem = "Project #9999 not found";
+        int statusCodeEsperado = HttpStatus.SC_NOT_FOUND;
 
         //Fluxo
-        ArrayList<String> list = ConsultasDBSteps.retornaProjetos(nome);
-        String id = list.get(0);
-        String enabled = list.get(4);
-        updateProjectRequest = new UpdateProjectRequest("9999");
+        String id = "9999";
+        String enabled = "true";
+        updateProjectRequest = new UpdateProjectRequest(id);
         updateProjectRequest.setJsonBody(id, nomeAlterado, enabled);
         Response response = updateProjectRequest.executeRequest();
 
         //Asserções
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
+        softAssert.assertTrue(response.body().jsonPath().get("message").toString().contains(mensagem), "Validação mensagem");
         softAssert.assertAll();
         System.out.println(Thread.currentThread().getId());
     }

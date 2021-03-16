@@ -8,7 +8,6 @@ import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import java.util.ArrayList;
 
 public class PostSubProjectsTests extends TestBase {
@@ -25,6 +24,7 @@ public class PostSubProjectsTests extends TestBase {
         int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
 
        //Fluxo
+        ConsultasDBSteps.insereDadosProjeto();
         ArrayList<String> list = ConsultasDBSteps.retornaProjetos(nomeProjeto);
         String id = list.get(0);
         postSubProjectRequest = new PostSubProjectRequest(id);

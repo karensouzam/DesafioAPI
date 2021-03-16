@@ -1,1 +1,1 @@
-SELECT id, username, email, access_level from mantis_user_table WHERE username <> 'administrator'
+SELECT id, username, email, access_level from mantis_user_table WHERE username <> 'administrator' ORDER BY ID DESC

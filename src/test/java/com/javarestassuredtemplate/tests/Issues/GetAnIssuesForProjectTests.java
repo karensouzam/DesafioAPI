@@ -17,9 +17,6 @@ public class GetAnIssuesForProjectTests extends TestBase {
     public void buscarIssueDeUmProjetoEspecifico(){
         SoftAssert softAssert = new SoftAssert();
 
-        ConsultasDBSteps.apagaDadosProjeto();
-        ConsultasDBSteps.apagaIssues();
-        ConsultasDBSteps.apagaDescricaoIssue();
         ConsultasDBSteps.insereDadosProjeto();
         ConsultasDBSteps.insereDescricaoIssue();
 

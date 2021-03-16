@@ -27,6 +27,7 @@ public class PostProjectVersionTests extends TestBase {
        int statusCodeEsperado = HttpStatus.SC_NO_CONTENT;
 
        //Fluxo
+        ConsultasDBSteps.insereDadosProjeto();
         ArrayList<String> list = ConsultasDBSteps.retornaProjetos(nameProject);
         projectVersionRequest = new PostProjectVersionRequest(list.get(0));
         projectVersionRequest.setJsonBody(name, description, released, obsolete, timestamp);
@@ -53,6 +54,7 @@ public class PostProjectVersionTests extends TestBase {
         int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
 
         //Fluxo
+        ConsultasDBSteps.insereDadosProjeto();
         ArrayList<String> list = ConsultasDBSteps.retornaProjetos(nameProject);
         projectVersionRequest = new PostProjectVersionRequest(list.get(0));
         projectVersionRequest.setJsonBody(name, description, released, obsolete, timestamp);
@@ -80,12 +82,11 @@ public class PostProjectVersionTests extends TestBase {
         int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
 
         //Fluxo
+        ConsultasDBSteps.insereDadosProjeto();
         ArrayList<String> list = ConsultasDBSteps.retornaProjetos(nameProject);
         projectVersionRequest = new PostProjectVersionRequest(list.get(0));
         projectVersionRequest.setJsonBody(name, description, released, obsolete, timestamp);
         Response response = projectVersionRequest.executeRequest();
-        projectVersionRequest = new PostProjectVersionRequest("9999");
-        projectVersionRequest.setJsonBody(name, description, released, obsolete, timestamp);
         Response responseDuplicado = projectVersionRequest.executeRequest();
 
         //Asserções

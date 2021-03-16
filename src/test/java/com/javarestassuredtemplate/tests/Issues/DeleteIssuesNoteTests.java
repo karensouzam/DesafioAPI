@@ -1,6 +1,7 @@
 package com.javarestassuredtemplate.tests.Issues;
 
 import com.javarestassuredtemplate.bases.TestBase;
+import com.javarestassuredtemplate.dbsteps.ConsultasDBSteps;
 import com.javarestassuredtemplate.requests.Issues.DeleteIssuesNoteRequest;
 import com.javarestassuredtemplate.requests.Issues.PostIssueNoteRequest;
 import com.javarestassuredtemplate.requests.Issues.PostIssuesRequest;
@@ -9,6 +10,8 @@ import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import java.util.ArrayList;
 
 public class DeleteIssuesNoteTests extends TestBase{
         DeleteIssuesNoteRequest deleteIssuesNoteRequest;
@@ -29,20 +32,28 @@ public class DeleteIssuesNoteTests extends TestBase{
             int statusCodeEsperado = HttpStatus.SC_OK;
 
             //Fluxo
-            postIssuesRequest = new PostIssuesRequest();
+            ConsultasDBSteps.insereDadosProjeto();
+            ConsultasDBSteps.insereDescricaoIssue();
+            ArrayList<String> projeto = ConsultasDBSteps.retornaProjetos("PROJETO TESTE 1");
+            ArrayList<String> list = ConsultasDBSteps.retornaDescricaoIssue();
+            String id = projeto.get(0);
+            String descricao = list.get(0);
+            ConsultasDBSteps.insereIssues(id,descricao);
+            /*postIssuesRequest = new PostIssuesRequest();
             postIssuesRequest.setJsonBody(summary, description, categoryName, projectName);
-            Response response = postIssuesRequest.executeRequest();
+            Response response = postIssuesRequest.executeRequest();*/
+            ArrayList<String> issues = ConsultasDBSteps.retornaIssues();
 
-            String id = response.body().jsonPath().get("issue.id").toString();
+            String idIssue = issues.get(6);
 
-            postIssueNoteRequest = new PostIssueNoteRequest(id);
+            postIssueNoteRequest = new PostIssueNoteRequest(idIssue);
             postIssueNoteRequest.setJsonBody(issueText, issueName);
-            Response response1 = postIssueNoteRequest.executeRequest();
+            Response responseNote = postIssueNoteRequest.executeRequest();
 
-            String idNote = response1.body().jsonPath().get("note.id").toString();
+            String idNote = responseNote.body().jsonPath().get("note.id").toString();
 
             //Fluxo
-            deleteIssuesNoteRequest = new DeleteIssuesNoteRequest(id, idNote);
+            deleteIssuesNoteRequest = new DeleteIssuesNoteRequest(idIssue, idNote);
             Response response2 = deleteIssuesNoteRequest.executeRequest();
 
             //Asserções

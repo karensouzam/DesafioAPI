@@ -1,6 +1,7 @@
 package com.javarestassuredtemplate.bases;
 
 import com.javarestassuredtemplate.GlobalParameters;
+import com.javarestassuredtemplate.dbsteps.ConsultasDBSteps;
 import com.javarestassuredtemplate.utils.ExtentReportsUtils;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -26,11 +27,23 @@ public abstract class TestBase {
     public void beforeTest(Method method){
         ExtentReportsUtils.addTest(method.getName(), method.getDeclaringClass().getSimpleName());
         //AutenticacaoSteps.gerarToken(GlobalParameters.AUTHENTICATOR_USER, GlobalParameters.AUTHENTICATOR_PASSWORD); ==> caso a geração de token deva ser feita antes de iniciar cada teste
+
     }
 
     @AfterMethod
-    public void afterTest(ITestResult result){ ExtentReportsUtils.addTestResult(result);}
+    public void afterTest(ITestResult result){
+        ExtentReportsUtils.addTestResult(result);
+    }
 
     @AfterSuite
-    public void afterSuite(){ ExtentReportsUtils.generateReport();}
+    public void afterSuite(){
+        ExtentReportsUtils.generateReport();
+        ConsultasDBSteps.apagaDadosProjeto();
+        ConsultasDBSteps.apagaIssues();
+        ConsultasDBSteps.apagaDescricaoIssue();
+        ConsultasDBSteps.apagaIssuesNote();
+        ConsultasDBSteps.apagaUsuarios();
+        ConsultasDBSteps.apagaIssuesNoteText();
+        ConsultasDBSteps.apagaVersionProject();
+    }
 }

@@ -24,6 +24,7 @@ public class UpdateSubProjectsTests extends TestBase {
         int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
 
        //Fluxo
+        ConsultasDBSteps.insereDadosProjeto();
         ArrayList<String> list = ConsultasDBSteps.retornaProjetos(nomeProjeto);
         String id = list.get(0);
         updateSubProjectRequest = new UpdateSubProjectRequest(id, "0");

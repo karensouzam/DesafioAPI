@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class PostIssuesNoteTests extends TestBase {
-    PostIssuesRequest postProblemasRequest;
+    PostIssuesRequest postIssuesRequest;
     PostIssueNoteRequest postIssueNoteRequest;
 
     @Test
@@ -27,9 +27,9 @@ public class PostIssuesNoteTests extends TestBase {
         int statusCodeEsperado = HttpStatus.SC_CREATED;
 
         //Fluxo
-        postProblemasRequest = new PostIssuesRequest();
-        postProblemasRequest.setJsonBody(summary, description, categoryName, projectName);
-        Response response = postProblemasRequest.executeRequest();
+        postIssuesRequest = new PostIssuesRequest();
+        postIssuesRequest.setJsonBody(summary, description, categoryName, projectName);
+        Response response = postIssuesRequest.executeRequest();
 
         String id = response.body().jsonPath().get("issue.id").toString();
 
@@ -60,9 +60,9 @@ public class PostIssuesNoteTests extends TestBase {
         int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
 
         //Fluxo
-        postProblemasRequest = new PostIssuesRequest();
-        postProblemasRequest.setJsonBody(summary, description, categoryName, projectName);
-        Response response = postProblemasRequest.executeRequest();
+        postIssuesRequest = new PostIssuesRequest();
+        postIssuesRequest.setJsonBody(summary, description, categoryName, projectName);
+        Response response = postIssuesRequest.executeRequest();
 
         String id = response.body().jsonPath().get("issue.id").toString();
 

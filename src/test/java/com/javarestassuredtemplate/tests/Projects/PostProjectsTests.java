@@ -18,7 +18,7 @@ public class PostProjectsTests extends TestBase {
         SoftAssert softAssert = new SoftAssert();
 
         //Parâmetros
-        String name = "Projeto Teste";
+        String name = "Projeto Teste 2";
         String statusId = "10";
         String statusName = "development";
         String statusLabel = "development";
@@ -148,10 +148,11 @@ public class PostProjectsTests extends TestBase {
         postProjectsRequest = new PostProjectsRequest();
         postProjectsRequest.setJsonBody(name, statusId, statusName, statusLabel, description, enabled, filePath, viewStateId, viewStateName, viewStateLabel);
         Response response = postProjectsRequest.executeRequest();
+        Response responseDuplicado = postProjectsRequest.executeRequest();
 
         //Asserções
-        Assert.assertEquals(response.statusCode(), statusCodeEsperado);
-        softAssert.assertTrue(response.body().htmlPath().get().toString().contains(mensagem), "Validação mensagem");
+        Assert.assertEquals(responseDuplicado.statusCode(), statusCodeEsperado);
+        softAssert.assertTrue(responseDuplicado.body().htmlPath().get().toString().contains(mensagem), "Validação mensagem");
         softAssert.assertAll();
     }
 
