@@ -3,6 +3,7 @@ package com.javarestassuredtemplate.tests.Projects;
 import com.javarestassuredtemplate.bases.TestBase;
 import com.javarestassuredtemplate.dbsteps.ConsultasDBSteps;
 import com.javarestassuredtemplate.requests.Projects.PostSubProjectRequest;
+import com.javarestassuredtemplate.utils.GeneralUtils;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -18,13 +19,13 @@ public class PostSubProjectsTests extends TestBase {
        SoftAssert softAssert = new SoftAssert();
 
        //Parâmetros
-        String nomeProjeto = "PROJETO TESTE 1";
+        String nomeProjeto = "PROJETO TESTE " + GeneralUtils.getNumeroAleatorio();
         String inherit_parent = "true";
         String mensagem = "Project can't be subproject of itself";
         int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
 
        //Fluxo
-        ConsultasDBSteps.insereDadosProjeto();
+        ConsultasDBSteps.insereDadosProjeto(nomeProjeto);
         ArrayList<String> list = ConsultasDBSteps.retornaProjetos(nomeProjeto);
         String id = list.get(0);
         postSubProjectRequest = new PostSubProjectRequest(id);
@@ -43,7 +44,7 @@ public class PostSubProjectsTests extends TestBase {
         SoftAssert softAssert = new SoftAssert();
 
         //Parâmetros
-        String nomeProjeto = "PROJETO TESTE 1";
+        String nomeProjeto = "PROJETO TESTE " + GeneralUtils.getNumeroAleatorio();
         String inherit_parent = "true";
         String mensagem = "Project '9999' not found";
         int statusCodeEsperado = HttpStatus.SC_NOT_FOUND;
@@ -65,7 +66,7 @@ public class PostSubProjectsTests extends TestBase {
         SoftAssert softAssert = new SoftAssert();
 
         //Parâmetros
-        String nomeProjeto = "PROJETO TESTE 1";
+        String nomeProjeto = "PROJETO TESTE " + GeneralUtils.getNumeroAleatorio();
         String inherit_parent = "true";
         String localized = "Invalid value for 'project_id'";
         int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;

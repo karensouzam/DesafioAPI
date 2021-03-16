@@ -1,7 +1,9 @@
 package com.javarestassuredtemplate.tests.Issues;
 
 import com.javarestassuredtemplate.bases.TestBase;
+import com.javarestassuredtemplate.dbsteps.ConsultasDBSteps;
 import com.javarestassuredtemplate.requests.Issues.PostIssuesRequest;
+import com.javarestassuredtemplate.utils.GeneralUtils;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -19,19 +21,20 @@ public class PostIssuesTests extends TestBase {
         String summary ="SUMARIO";
         String description="DESCRICAO";
         String categoryName="General";
-        String projectName="PROJETO TESTE 1";
+        String nomeProjeto = "PROJETO TESTE " + GeneralUtils.getNumeroAleatorio();
         int statusCodeEsperado = HttpStatus.SC_CREATED;
+        ConsultasDBSteps.insereDadosProjeto(nomeProjeto);
 
         //Fluxo
         postIssuesRequest = new PostIssuesRequest();
-        postIssuesRequest.setJsonBody(summary, description, categoryName, projectName);
+        postIssuesRequest.setJsonBody(summary, description, categoryName, nomeProjeto);
         Response response = postIssuesRequest.executeRequest();
 
         //Asserções
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
         softAssert.assertEquals(response.body().jsonPath().get("issue.summary").toString(), summary, "Validação issue.summary");
         softAssert.assertEquals(response.body().jsonPath().get("issue.description").toString(), description, "Validação description");
-        softAssert.assertEquals(response.body().jsonPath().get("issue.project.name").toString(), projectName, "Validação projectName");
+        softAssert.assertEquals(response.body().jsonPath().get("issue.project.name").toString(), nomeProjeto, "Validação projectName");
         softAssert.assertEquals(response.body().jsonPath().get("issue.category.name").toString(), categoryName, "Validação categoryName");
         softAssert.assertAll();
         System.out.println(Thread.currentThread().getId());

@@ -1,8 +1,10 @@
 package com.javarestassuredtemplate.tests.Issues;
 
 import com.javarestassuredtemplate.bases.TestBase;
+import com.javarestassuredtemplate.dbsteps.ConsultasDBSteps;
 import com.javarestassuredtemplate.requests.Issues.PostIssueNoteRequest;
 import com.javarestassuredtemplate.requests.Issues.PostIssuesRequest;
+import com.javarestassuredtemplate.utils.GeneralUtils;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -21,14 +23,16 @@ public class PostIssuesNoteTests extends TestBase {
         String summary ="SUMARIO";
         String description="DESCRICAO";
         String categoryName="General";
-        String projectName="PROJETO TESTE 1";
+        String nomeProjeto = "PROJETO TESTE " + GeneralUtils.getNumeroAleatorio();
         String issueText = "test note";
         String issueName = "public";
         int statusCodeEsperado = HttpStatus.SC_CREATED;
+        ConsultasDBSteps.insereDadosProjeto(nomeProjeto);
+        ConsultasDBSteps.insereDescricaoIssue();
 
         //Fluxo
         postIssuesRequest = new PostIssuesRequest();
-        postIssuesRequest.setJsonBody(summary, description, categoryName, projectName);
+        postIssuesRequest.setJsonBody(summary, description, categoryName, nomeProjeto);
         Response response = postIssuesRequest.executeRequest();
 
         String id = response.body().jsonPath().get("issue.id").toString();
@@ -53,15 +57,16 @@ public class PostIssuesNoteTests extends TestBase {
         String summary ="SUMARIO";
         String description="DESCRICAO";
         String categoryName="General";
-        String projectName="PROJETO TESTE 1";
+        String nomeProjeto = "PROJETO TESTE " + GeneralUtils.getNumeroAleatorio();
         String issueText = "";
         String issueName = "public";
         String mensagem = "Issue note not specified.";
         int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
+        ConsultasDBSteps.insereDadosProjeto(nomeProjeto);
 
         //Fluxo
         postIssuesRequest = new PostIssuesRequest();
-        postIssuesRequest.setJsonBody(summary, description, categoryName, projectName);
+        postIssuesRequest.setJsonBody(summary, description, categoryName, nomeProjeto);
         Response response = postIssuesRequest.executeRequest();
 
         String id = response.body().jsonPath().get("issue.id").toString();

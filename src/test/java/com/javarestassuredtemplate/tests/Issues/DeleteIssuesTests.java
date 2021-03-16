@@ -3,6 +3,7 @@ package com.javarestassuredtemplate.tests.Issues;
 import com.javarestassuredtemplate.bases.TestBase;
 import com.javarestassuredtemplate.dbsteps.ConsultasDBSteps;
 import com.javarestassuredtemplate.requests.Issues.DeleteIssuesRequest;
+import com.javarestassuredtemplate.utils.GeneralUtils;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -17,10 +18,11 @@ public class DeleteIssuesTests extends TestBase{
         public void apagarIssue(){
             SoftAssert softAssert = new SoftAssert();
 
-            ConsultasDBSteps.insereDadosProjeto();
+            String nomeProjeto = "PROJETO TESTE " + GeneralUtils.getNumeroAleatorio();
+            ConsultasDBSteps.insereDadosProjeto(nomeProjeto);
             ConsultasDBSteps.insereDescricaoIssue();
 
-            ArrayList<String> projeto = ConsultasDBSteps.retornaProjetos("PROJETO TESTE 1");
+            ArrayList<String> projeto = ConsultasDBSteps.retornaProjetos(nomeProjeto);
             ArrayList <String> descricaoIssue = ConsultasDBSteps.retornaDescricaoIssue();
             ConsultasDBSteps.insereIssues(projeto.get(0), descricaoIssue.get(0));
             ArrayList<String> list = ConsultasDBSteps.retornaIssues();

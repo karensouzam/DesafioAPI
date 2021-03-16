@@ -3,6 +3,7 @@ package com.javarestassuredtemplate.tests.Projects;
 import com.javarestassuredtemplate.bases.TestBase;
 import com.javarestassuredtemplate.dbsteps.ConsultasDBSteps;
 import com.javarestassuredtemplate.requests.Projects.UpdateProjectRequest;
+import com.javarestassuredtemplate.utils.GeneralUtils;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -18,13 +19,13 @@ public class UpdateProjectsTests extends TestBase {
        SoftAssert softAssert = new SoftAssert();
 
        //Parâmetros
-       String nome = "PROJETO TESTE 1";
-       String nomeAlterado = "PROJETO TESTE 1 ALTERADO";
-       int statusCodeEsperado = HttpStatus.SC_OK;
+        String nomeProjeto = "PROJETO TESTE " + GeneralUtils.getNumeroAleatorio();
+        String nomeAlterado = "PROJETO TESTE 1 ALTERADO";
+        int statusCodeEsperado = HttpStatus.SC_OK;
 
        //Fluxo
-        ConsultasDBSteps.insereDadosProjeto();
-        ArrayList<String> list = ConsultasDBSteps.retornaProjetos(nome);
+        ConsultasDBSteps.insereDadosProjeto(nomeProjeto);
+        ArrayList<String> list = ConsultasDBSteps.retornaProjetos(nomeProjeto);
         String id = list.get(0);
         String enabled = list.get(4);
         updateProjectRequest = new UpdateProjectRequest(id);
@@ -44,14 +45,14 @@ public class UpdateProjectsTests extends TestBase {
         SoftAssert softAssert = new SoftAssert();
 
         //Parâmetros
-        String nome = "PROJETO TESTE 1";
+        String nomeProjeto = "PROJETO TESTE " + GeneralUtils.getNumeroAleatorio();
         String nomeAlterado = "";
         String mensagem = "Fatal error";
         int statusCodeEsperado = HttpStatus.SC_OK;
 
         //Fluxo
-        ConsultasDBSteps.insereDadosProjeto();
-        ArrayList<String> list = ConsultasDBSteps.retornaProjetos(nome);
+        ConsultasDBSteps.insereDadosProjeto(nomeProjeto);
+        ArrayList<String> list = ConsultasDBSteps.retornaProjetos(nomeProjeto);
         String id = list.get(0);
         String enabled = list.get(4);
         updateProjectRequest = new UpdateProjectRequest(id);
@@ -93,7 +94,7 @@ public class UpdateProjectsTests extends TestBase {
         SoftAssert softAssert = new SoftAssert();
 
         //Parâmetros
-        String nome = "PROJETO TESTE 1";
+        String nomeProjeto = "PROJETO TESTE " + GeneralUtils.getNumeroAleatorio();
         String nomeAlterado = "PROJETO TESTE 1 ALTERADO";
         int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
 

@@ -96,6 +96,11 @@ public class GeneralUtils {
         int i = 1 + (int) (Math.random() * 100);
         return i;
     }
+
+    public static Long getNumeroAleatorio(){
+        Long i = 1 + (long) (Math.random() * 10000);
+        return i;
+    }
     /*public static String leitor(String path) throws IOException {
         BufferedReader buffRead = new BufferedReader(new FileReader(path));
         String linha = "";

@@ -3,6 +3,7 @@ package com.javarestassuredtemplate.tests.Projects;
 import com.javarestassuredtemplate.bases.TestBase;
 import com.javarestassuredtemplate.requests.Projects.PostProjectsRequest;
 import com.javarestassuredtemplate.utils.ExcelUtils;
+import com.javarestassuredtemplate.utils.GeneralUtils;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -131,7 +132,7 @@ public class PostProjectsTests extends TestBase {
         SoftAssert softAssert = new SoftAssert();
 
         //Parâmetros
-        String name = "PROJETO TESTE 1";
+        String nomeProjeto = "PROJETO TESTE " + GeneralUtils.getNumeroAleatorio();
         String statusId = "10";
         String statusName = "development";
         String statusLabel = "development";
@@ -146,7 +147,7 @@ public class PostProjectsTests extends TestBase {
 
         //Fluxo
         postProjectsRequest = new PostProjectsRequest();
-        postProjectsRequest.setJsonBody(name, statusId, statusName, statusLabel, description, enabled, filePath, viewStateId, viewStateName, viewStateLabel);
+        postProjectsRequest.setJsonBody(nomeProjeto, statusId, statusName, statusLabel, description, enabled, filePath, viewStateId, viewStateName, viewStateLabel);
         Response response = postProjectsRequest.executeRequest();
         Response responseDuplicado = postProjectsRequest.executeRequest();
 

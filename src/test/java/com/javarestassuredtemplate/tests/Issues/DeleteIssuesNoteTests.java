@@ -5,12 +5,12 @@ import com.javarestassuredtemplate.dbsteps.ConsultasDBSteps;
 import com.javarestassuredtemplate.requests.Issues.DeleteIssuesNoteRequest;
 import com.javarestassuredtemplate.requests.Issues.PostIssueNoteRequest;
 import com.javarestassuredtemplate.requests.Issues.PostIssuesRequest;
+import com.javarestassuredtemplate.utils.GeneralUtils;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import java.util.ArrayList;
 
 public class DeleteIssuesNoteTests extends TestBase{
@@ -26,22 +26,19 @@ public class DeleteIssuesNoteTests extends TestBase{
             String summary ="SUMARIO";
             String description="DESCRICAO";
             String categoryName="General";
-            String projectName="PROJETO TESTE 1";
+            String nomeProjeto = "PROJETO TESTE " + GeneralUtils.getNumeroAleatorio();
             String issueText = "test note";
             String issueName = "public";
             int statusCodeEsperado = HttpStatus.SC_OK;
 
             //Fluxo
-            ConsultasDBSteps.insereDadosProjeto();
+            ConsultasDBSteps.insereDadosProjeto(nomeProjeto);
             ConsultasDBSteps.insereDescricaoIssue();
-            ArrayList<String> projeto = ConsultasDBSteps.retornaProjetos("PROJETO TESTE 1");
+            ArrayList<String> projeto = ConsultasDBSteps.retornaProjetos(nomeProjeto);
             ArrayList<String> list = ConsultasDBSteps.retornaDescricaoIssue();
             String id = projeto.get(0);
             String descricao = list.get(0);
             ConsultasDBSteps.insereIssues(id,descricao);
-            /*postIssuesRequest = new PostIssuesRequest();
-            postIssuesRequest.setJsonBody(summary, description, categoryName, projectName);
-            Response response = postIssuesRequest.executeRequest();*/
             ArrayList<String> issues = ConsultasDBSteps.retornaIssues();
 
             String idIssue = issues.get(6);

@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public class ConsultasDBSteps {
     private static String queriesPath = System.getProperty("user.dir")+"/src/test/java/com/javarestassuredtemplate/queries/";
 
-    public static ArrayList<String> insereDadosProjeto(){
+    public static ArrayList<String> insereDadosProjeto(String nome){
         ArrayList<String> dadosProjeto;
-        String query = GeneralUtils.readFileToAString(queriesPath + "insereProjetosQuery.sql");
+        String query = GeneralUtils.readFileToAString(queriesPath + "insereProjetosQuery.sql").replace("$nome", nome);
         dadosProjeto = DBUtils.executeUpdate(query);
         return dadosProjeto;
     }
@@ -111,6 +111,13 @@ public class ConsultasDBSteps {
     public static ArrayList<String> retornaIssues() {
         ArrayList<String> dados;
         String query = GeneralUtils.readFileToAString(queriesPath + "retornaIssuesQuery.sql");
+        dados = DBUtils.getQueryResult(query);
+        return dados;
+    }
+
+    public static ArrayList<String> retornaIssuesEspecifico(String nomeProjeto) {
+        ArrayList<String> dados;
+        String query = GeneralUtils.readFileToAString(queriesPath + "retornaIssuesEspecificoQuery.sql").replace("$nomeProjeto", nomeProjeto);
         dados = DBUtils.getQueryResult(query);
         return dados;
     }
