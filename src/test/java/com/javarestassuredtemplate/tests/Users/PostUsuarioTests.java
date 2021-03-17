@@ -9,7 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class PostUsuarioTest extends TestBase  {
+public class PostUsuarioTests extends TestBase  {
     PostUserRequest postUserRequest;
 
     @Test

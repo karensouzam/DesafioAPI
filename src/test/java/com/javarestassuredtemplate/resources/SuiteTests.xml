@@ -19,9 +19,9 @@
             <class name = "com.javarestassuredtemplate.tests.Projects.PostSubProjectsTests"/>
             <class name = "com.javarestassuredtemplate.tests.Projects.UpdateSubProjectsTests"/>
             <class name = "com.javarestassuredtemplate.tests.Projects.UpdateProjectsTests"/>
-            <class name = "com.javarestassuredtemplate.tests.Users.GetMyUserInfoTest"/>
-            <class name = "com.javarestassuredtemplate.tests.Users.PostUsuarioTest"/>
-            <class name = "com.javarestassuredtemplate.tests.Users.DeleteUsuarioTest"/>
+            <class name = "com.javarestassuredtemplate.tests.Users.GetMyUserInfoTests"/>
+            <class name = "com.javarestassuredtemplate.tests.Users.PostUsuarioTests"/>
+            <class name = "com.javarestassuredtemplate.tests.Users.DeleteUsuarioTests"/>
         </classes>
     </test>
 </suite>

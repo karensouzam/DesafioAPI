@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import java.util.ArrayList;
 
-public class GetMyUserInfoTest extends TestBase {
+public class GetMyUserInfoTests extends TestBase {
     GetMyUserInfoRequest getMyUserInfoRequest;
 
     @Test

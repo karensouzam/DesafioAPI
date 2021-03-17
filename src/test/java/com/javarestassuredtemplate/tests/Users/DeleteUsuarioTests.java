@@ -13,7 +13,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
 
-public class DeleteUsuarioTest extends TestBase  {
+public class DeleteUsuarioTests extends TestBase  {
     PostUserRequest postUserRequest;
     DeleteUserRequest deleteUserRequest;
 
