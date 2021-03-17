@@ -10,3 +10,8 @@ steps:
     goals: 'clean test -Denv=qa -Dbrowser=chrome'
     testResultsFiles: 'target/xml-junit/*.xml'
     testRunTitle: 'Functional Testing'
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      echo mvn clean verify
