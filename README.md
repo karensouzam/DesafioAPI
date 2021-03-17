@@ -1,4 +1,4 @@
-#Desafio testes de API - RestSharp
+# Desafio testes de API - RestAssured
 - Arquitetura Projeto
     - Linguagem - Java
     - Orquestrador de testes - Maven 1.7
