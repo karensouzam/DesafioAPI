@@ -4,6 +4,7 @@ import com.javarestassuredtemplate.bases.TestBase;
 import com.javarestassuredtemplate.dbsteps.ConsultasDBSteps;
 import com.javarestassuredtemplate.requests.Users.DeleteUserRequest;
 import com.javarestassuredtemplate.requests.Users.PostUserRequest;
+import com.javarestassuredtemplate.utils.GeneralUtils;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -33,7 +34,6 @@ public class DeleteUsuarioTest extends TestBase  {
         //Asserções
         Assert.assertEquals(responseDelete.statusCode(), statusCodeEsperado);
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 
     @Test
@@ -41,7 +41,7 @@ public class DeleteUsuarioTest extends TestBase  {
         SoftAssert softAssert = new SoftAssert();
 
         //Parametros
-        String name = "Usuario2";
+        String name = "Usuario" + GeneralUtils.getNumeroAleatorio();
         String password = "123456";
         String realName = "Usuario inserido pela automação";
         String email = "usario@email.com.br";
@@ -64,7 +64,6 @@ public class DeleteUsuarioTest extends TestBase  {
         Assert.assertEquals(responseDelete.statusCode(), statusCodeEsperado);
         softAssert.assertTrue(responseDelete.body().jsonPath().get("localized").toString().contains(localized), "Validação mensagem");
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 
     @Test
@@ -81,7 +80,6 @@ public class DeleteUsuarioTest extends TestBase  {
         //Asserções
         Assert.assertEquals(responseDelete.statusCode(), statusCodeEsperado);
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 
     @Test
@@ -100,6 +98,5 @@ public class DeleteUsuarioTest extends TestBase  {
         Assert.assertEquals(responseDelete.statusCode(), statusCodeEsperado);
         softAssert.assertTrue(responseDelete.body().jsonPath().get("message").toString().contains(mensagem), "Validação mensagem");
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 }

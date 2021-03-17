@@ -37,7 +37,6 @@ public class PostProjectVersionTests extends TestBase {
         //Asserções
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 
     @Test
@@ -65,7 +64,6 @@ public class PostProjectVersionTests extends TestBase {
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
         softAssert.assertTrue(response.body().jsonPath().get("message").toString().contains(mensagem), "Validação mensagem");
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 
     @Test
@@ -93,7 +91,5 @@ public class PostProjectVersionTests extends TestBase {
         //Asserções
         Assert.assertEquals(responseDuplicado.statusCode(), statusCodeEsperado);
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
-
 }

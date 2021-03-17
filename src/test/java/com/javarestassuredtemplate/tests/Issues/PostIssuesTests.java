@@ -37,7 +37,6 @@ public class PostIssuesTests extends TestBase {
         softAssert.assertEquals(response.body().jsonPath().get("issue.project.name").toString(), nomeProjeto, "Validação projectName");
         softAssert.assertEquals(response.body().jsonPath().get("issue.category.name").toString(), categoryName, "Validação categoryName");
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 
     @Test
@@ -61,7 +60,6 @@ public class PostIssuesTests extends TestBase {
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
         softAssert.assertEquals(response.body().jsonPath().get("message").toString(), mensagem, "Validação mensagem");
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 
     @Test
@@ -85,6 +83,5 @@ public class PostIssuesTests extends TestBase {
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
         softAssert.assertEquals(response.body().jsonPath().get("message").toString(), mensagem, "Validação mensagem");
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 }

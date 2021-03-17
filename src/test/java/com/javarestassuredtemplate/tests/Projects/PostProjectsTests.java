@@ -48,7 +48,6 @@ public class PostProjectsTests extends TestBase {
         softAssert.assertEquals(response.body().jsonPath().get("project.view_state.name").toString(), viewStateName, "Validação viewStateName");
         softAssert.assertEquals(response.body().jsonPath().get("project.view_state.label").toString(), viewStateLabel, "Validação viewStateLabel");
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 
     @Test
@@ -57,13 +56,12 @@ public class PostProjectsTests extends TestBase {
 
         String excelPath = "src/test/java/com/javarestassuredtemplate/resources/DadosProjetos.xlsx";
         String sheetName = "Planilha";
-
         ExcelUtils excel = new ExcelUtils(excelPath, sheetName);
 
         int tam = excel.getRowCount();
 
         for (int x = 1; x < tam; x++) {
-
+            //Parâmetros
             String nome = excel.getCellData(x, 0).toString();
             String statusId = excel.getCellData(x, 1).toString();
             String statusName = excel.getCellData(x, 2).toString();
@@ -93,7 +91,6 @@ public class PostProjectsTests extends TestBase {
             softAssert.assertEquals(response.body().jsonPath().get("project.view_state.name").toString(), viewStateName, "Validação viewStateName");
             softAssert.assertEquals(response.body().jsonPath().get("project.view_state.label").toString(), viewStateLabel, "Validação viewStateLabel");
             softAssert.assertAll();
-            System.out.println(Thread.currentThread().getId());
         }
     }
 
@@ -124,7 +121,6 @@ public class PostProjectsTests extends TestBase {
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
         softAssert.assertTrue(response.body().htmlPath().get().toString().contains(mensagem), "Validação mensagem");
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 
     @Test
@@ -156,6 +152,5 @@ public class PostProjectsTests extends TestBase {
         softAssert.assertTrue(responseDuplicado.body().htmlPath().get().toString().contains(mensagem), "Validação mensagem");
         softAssert.assertAll();
     }
-
 }
 

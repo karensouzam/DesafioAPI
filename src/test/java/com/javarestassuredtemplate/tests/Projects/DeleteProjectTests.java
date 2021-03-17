@@ -44,7 +44,6 @@ public class DeleteProjectTests extends TestBase {
         //Asserções
         Assert.assertEquals(responseDelete.statusCode(), statusCodeEsperado);
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 
     @Test
@@ -61,7 +60,6 @@ public class DeleteProjectTests extends TestBase {
         //Asserções
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 
     @Test
@@ -78,6 +76,5 @@ public class DeleteProjectTests extends TestBase {
         //Asserções
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 }

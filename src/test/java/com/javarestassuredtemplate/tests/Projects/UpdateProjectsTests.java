@@ -37,7 +37,6 @@ public class UpdateProjectsTests extends TestBase {
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
         softAssert.assertEquals(listAlterado.get(0), nomeAlterado, "Validação name");
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 
     @Test
@@ -63,7 +62,6 @@ public class UpdateProjectsTests extends TestBase {
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
         softAssert.assertTrue(response.body().htmlPath().get().toString().contains(mensagem), "Validação name");
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 
     @Test
@@ -86,7 +84,6 @@ public class UpdateProjectsTests extends TestBase {
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
         softAssert.assertTrue(response.body().jsonPath().get("message").toString().contains(mensagem), "Validação mensagem");
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 
     @Test
@@ -108,6 +105,5 @@ public class UpdateProjectsTests extends TestBase {
         //Asserções
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 }

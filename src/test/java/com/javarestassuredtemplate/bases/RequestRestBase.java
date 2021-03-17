@@ -10,7 +10,6 @@ import com.javarestassuredtemplate.utils.RestAssuredUtils;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.http.*;
 import io.restassured.response.Response;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,9 +29,7 @@ public abstract class RequestRestBase {
         config = RestAssuredConfig.newConfig().jsonConfig(jsonConfig().numberReturnType(BIG_DECIMAL));
         enableLoggingOfRequestAndResponseIfValidationFails();
         headers.put("content-type", "application/json");
-        //headers.put("Authorization", "Bearer "+GlobalParameters.TOKEN); //<== EXEMPLO DE COMO ADICIONAR TOKEN DEFAULT CASO NECESSÁRIO
-        headers.put("Authorization", GlobalParameters.TOKEN); //<== EXEMPLO DE COMO ADICIONAR TOKEN DEFAULT CASO NECESSÁRIO
-        //headers.put("Authorization", "JWT "+GlobalParameters.TOKEN); //KAREN para teste com api barrigarest
+        headers.put("Authorization", GlobalParameters.TOKEN);
     }
 
     public Response executeRequest() {

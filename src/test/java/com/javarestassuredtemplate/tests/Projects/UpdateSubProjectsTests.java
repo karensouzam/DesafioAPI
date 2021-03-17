@@ -36,7 +36,6 @@ public class UpdateSubProjectsTests extends TestBase {
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
         softAssert.assertTrue(response.body().jsonPath().get("localized").toString().contains(localized), "Validação localized");
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 
     @Test
@@ -58,6 +57,5 @@ public class UpdateSubProjectsTests extends TestBase {
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
         softAssert.assertTrue(response.body().jsonPath().get("message").toString().contains(mensagem), "Validação mensagem");
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 }

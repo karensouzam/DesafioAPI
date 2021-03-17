@@ -10,8 +10,6 @@ public class UsuariosDBSteps {
         String query = GeneralUtils.readFileToAString(queriesPath + "retornaSenhaUsuarioQuery");
         query.replace("$nome", userName);
 
-
-
         return DBUtils.getQueryResult(query).get(0);
     }
 }

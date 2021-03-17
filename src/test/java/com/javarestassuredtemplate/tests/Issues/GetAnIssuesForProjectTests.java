@@ -18,17 +18,16 @@ public class GetAnIssuesForProjectTests extends TestBase {
     public void buscarIssueDeUmProjetoEspecifico(){
         SoftAssert softAssert = new SoftAssert();
 
+        //Parametros
         String nomeProjeto = "PROJETO TESTE " + GeneralUtils.getNumeroAleatorio();
         ConsultasDBSteps.insereDadosProjeto(nomeProjeto);
         ConsultasDBSteps.insereDescricaoIssue();
-        //ConsultasDBSteps.apagaIssues();
 
         ArrayList<String> projeto = ConsultasDBSteps.retornaProjetos(nomeProjeto);
         ArrayList <String> descricaoProblema = ConsultasDBSteps.retornaDescricaoIssue();
         ConsultasDBSteps.insereIssues(projeto.get(0), descricaoProblema.get(0));
         ArrayList<String> list = ConsultasDBSteps.retornaIssuesEspecifico(nomeProjeto);
 
-        //Parâmetros
         String summary = list.get(0);
         String description = list.get(1);
         String stepsToReproduce = list.get(2);
@@ -50,7 +49,6 @@ public class GetAnIssuesForProjectTests extends TestBase {
         softAssert.assertEquals(response.body().jsonPath().get("issues.project.name[0]").toString(), projectName, "Validação nome projeto");
         softAssert.assertEquals(response.body().jsonPath().get("issues.category.name[0]").toString(), category, "Validação nome categoria");
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 
     @Test
@@ -68,6 +66,5 @@ public class GetAnIssuesForProjectTests extends TestBase {
         //Asserções
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 }

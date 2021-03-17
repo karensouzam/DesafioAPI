@@ -31,6 +31,7 @@ public class GetProjectsTests extends TestBase {
         String viewStateName = "public";
         String viewStateLabel = "public";
 
+        //Fluxo
         postProjectsRequest = new PostProjectsRequest();
         postProjectsRequest.setJsonBody(name, statusId, statusName, statusLabel, description, enabled, filePath, viewStateId, viewStateName, viewStateLabel);
         Response response = postProjectsRequest.executeRequest();
@@ -42,7 +43,6 @@ public class GetProjectsTests extends TestBase {
         String listViewStateName = list.get(5);
         int statusCodeEsperado = HttpStatus.SC_OK;
 
-        //Fluxo
         getProjetosRequest = new GetProjectsRequest();
         Response responseGet = getProjetosRequest.executeRequest();
 
@@ -54,7 +54,5 @@ public class GetProjectsTests extends TestBase {
         softAssert.assertEquals(responseGet.body().jsonPath().get("projects.enabled[0]").toString(), listProjectEnabled, "Validação enable");
         softAssert.assertEquals(responseGet.body().jsonPath().get("projects.view_state.name[0]").toString(), listViewStateName, "Validação viewStateName");
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
-
 }

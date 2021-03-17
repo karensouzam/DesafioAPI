@@ -15,20 +15,10 @@ public abstract class TestBase {
     public void beforSuite(){
         new GlobalParameters();
         ExtentReportsUtils.createReport();
-        //AutenticacaoSteps.gerarToken(GlobalParameters.AUTHENTICATOR_USER, GlobalParameters.AUTHENTICATOR_PASSWORD); //==> caso a geração de token deva ser feita quando iniciar a bateria de testes
-        /*Karen
-        String token = AutenticacaoSteps.gerarToken(GlobalParameters.AUTHENTICATOR_USER, GlobalParameters.AUTHENTICATOR_PASSWORD); //==> caso a geração de token deva ser feita quando iniciar a bateria de testes
-        GlobalParameters.setToken(token);
-        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
-        /*Karen*/
     }
 
     @BeforeMethod
-    public void beforeTest(Method method){
-        ExtentReportsUtils.addTest(method.getName(), method.getDeclaringClass().getSimpleName());
-        //AutenticacaoSteps.gerarToken(GlobalParameters.AUTHENTICATOR_USER, GlobalParameters.AUTHENTICATOR_PASSWORD); ==> caso a geração de token deva ser feita antes de iniciar cada teste
-
-    }
+    public void beforeTest(Method method){ExtentReportsUtils.addTest(method.getName(), method.getDeclaringClass().getSimpleName());}
 
     @AfterMethod
     public void afterTest(ITestResult result){

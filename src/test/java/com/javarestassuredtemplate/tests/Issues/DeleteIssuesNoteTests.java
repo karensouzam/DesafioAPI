@@ -23,9 +23,6 @@ public class DeleteIssuesNoteTests extends TestBase{
             SoftAssert softAssert = new SoftAssert();
 
             //Parâmetros
-            String summary ="SUMARIO";
-            String description="DESCRICAO";
-            String categoryName="General";
             String nomeProjeto = "PROJETO TESTE " + GeneralUtils.getNumeroAleatorio();
             String issueText = "test note";
             String issueName = "public";
@@ -40,23 +37,19 @@ public class DeleteIssuesNoteTests extends TestBase{
             String descricao = list.get(0);
             ConsultasDBSteps.insereIssues(id,descricao);
             ArrayList<String> issues = ConsultasDBSteps.retornaIssues();
-
             String idIssue = issues.get(6);
 
             postIssueNoteRequest = new PostIssueNoteRequest(idIssue);
             postIssueNoteRequest.setJsonBody(issueText, issueName);
             Response responseNote = postIssueNoteRequest.executeRequest();
-
             String idNote = responseNote.body().jsonPath().get("note.id").toString();
 
-            //Fluxo
             deleteIssuesNoteRequest = new DeleteIssuesNoteRequest(idIssue, idNote);
             Response response2 = deleteIssuesNoteRequest.executeRequest();
 
             //Asserções
             Assert.assertEquals(response2.statusCode(), statusCodeEsperado);
             softAssert.assertAll();
-            System.out.println(Thread.currentThread().getId());
         }
 
         @Test
@@ -73,7 +66,6 @@ public class DeleteIssuesNoteTests extends TestBase{
             //Asserções
             Assert.assertEquals(response.statusCode(), statusCodeEsperado);
             softAssert.assertAll();
-            System.out.println(Thread.currentThread().getId());
         }
 
         @Test
@@ -92,6 +84,5 @@ public class DeleteIssuesNoteTests extends TestBase{
             Assert.assertEquals(response.statusCode(), statusCodeEsperado);
             softAssert.assertTrue(response.body().jsonPath().get("localized").toString().contains(localized), "Validação localized");
             softAssert.assertAll();
-            System.out.println(Thread.currentThread().getId());
         }
     }

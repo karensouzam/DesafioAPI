@@ -36,6 +36,5 @@ public class GetMyUserInfoTest extends TestBase {
         softAssert.assertEquals(response.body().jsonPath().get("email").toString(), email, "Validação email");
         softAssert.assertEquals(response.body().jsonPath().get("access_level.id").toString(), accessLevel, "Validação accessLevel");
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 }

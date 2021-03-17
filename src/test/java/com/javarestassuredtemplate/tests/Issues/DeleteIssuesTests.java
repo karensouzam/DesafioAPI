@@ -17,7 +17,7 @@ public class DeleteIssuesTests extends TestBase{
         @Test
         public void apagarIssue(){
             SoftAssert softAssert = new SoftAssert();
-
+            //Parametros
             String nomeProjeto = "PROJETO TESTE " + GeneralUtils.getNumeroAleatorio();
             ConsultasDBSteps.insereDadosProjeto(nomeProjeto);
             ConsultasDBSteps.insereDescricaoIssue();
@@ -26,17 +26,15 @@ public class DeleteIssuesTests extends TestBase{
             ArrayList <String> descricaoIssue = ConsultasDBSteps.retornaDescricaoIssue();
             ConsultasDBSteps.insereIssues(projeto.get(0), descricaoIssue.get(0));
             ArrayList<String> list = ConsultasDBSteps.retornaIssues();
-
-            //Parametros
             int statusCodeEsperado = HttpStatus.SC_NO_CONTENT;
 
-            //Busca Projeto
+            //Fluxo
             deleteIssuesRequest = new DeleteIssuesRequest(list.get(6));
             Response response = deleteIssuesRequest.executeRequest();
 
+            //asserções
             Assert.assertEquals(response.statusCode(), statusCodeEsperado);
             softAssert.assertAll();
-            System.out.println(Thread.currentThread().getId());
         }
 
         @Test
@@ -46,13 +44,13 @@ public class DeleteIssuesTests extends TestBase{
             //Parametros
             int statusCodeEsperado = HttpStatus.SC_NOT_FOUND;
 
-            //Busca Projeto
+            //Fluxo
             deleteIssuesRequest = new DeleteIssuesRequest("9999");
             Response response = deleteIssuesRequest.executeRequest();
 
+            //Asserções
             Assert.assertEquals(response.statusCode(), statusCodeEsperado);
             softAssert.assertAll();
-            System.out.println(Thread.currentThread().getId());
         }
 
         @Test
@@ -63,13 +61,13 @@ public class DeleteIssuesTests extends TestBase{
             String localized = "Issue 0 not found.";
             int statusCodeEsperado = HttpStatus.SC_NOT_FOUND;
 
-            //Busca Projeto
+            //Fluxo
             deleteIssuesRequest = new DeleteIssuesRequest("0");
             Response response = deleteIssuesRequest.executeRequest();
 
+            //Asserções
             Assert.assertEquals(response.statusCode(), statusCodeEsperado);
             softAssert.assertTrue(response.body().jsonPath().get("localized").toString().contains(localized), "Validação localized");
             softAssert.assertAll();
-            System.out.println(Thread.currentThread().getId());
         }
     }

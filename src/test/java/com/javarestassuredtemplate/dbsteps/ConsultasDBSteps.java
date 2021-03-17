@@ -2,13 +2,12 @@ package com.javarestassuredtemplate.dbsteps;
 
 import com.javarestassuredtemplate.utils.DBUtils;
 import com.javarestassuredtemplate.utils.GeneralUtils;
-
-
 import java.util.ArrayList;
 
 public class ConsultasDBSteps {
     private static String queriesPath = System.getProperty("user.dir")+"/src/test/java/com/javarestassuredtemplate/queries/";
 
+    //Manipulação dados projeto
     public static ArrayList<String> insereDadosProjeto(String nome){
         ArrayList<String> dadosProjeto;
         String query = GeneralUtils.readFileToAString(queriesPath + "insereProjetosQuery.sql").replace("$nome", nome);
@@ -42,8 +41,14 @@ public class ConsultasDBSteps {
         return dados;
     }
 
+    public static void apagaVersionProject(){
+        String query = GeneralUtils.readFileToAString(queriesPath + "apagaVersionProjectQuery.sql");
+        DBUtils.executeUpdate(query);
+    }
+
+    //Manipulação dados Issues
     public static void apagaDescricaoIssue(){
-        String query = GeneralUtils.readFileToAString(queriesPath + "apagaDescricaoProblemasQuery.sql");
+        String query = GeneralUtils.readFileToAString(queriesPath + "apagaDescricaoIssuesQuery.sql");
         DBUtils.executeUpdate(query);
     }
 
@@ -74,37 +79,10 @@ public class ConsultasDBSteps {
         DBUtils.executeUpdate(query);
     }
 
-    public static void apagaUsuarios(){
-        String query = GeneralUtils.readFileToAString(queriesPath + "apagaUsuariosQuery.sql");
-        DBUtils.executeUpdate(query);
-    }
-
-    public static void apagaVersionProject(){
-        String query = GeneralUtils.readFileToAString(queriesPath + "apagaVersionProjectQuery.sql");
-        DBUtils.executeUpdate(query);
-    }
-
     public static void insereIssues(String id, String bugTextId){
         String query = GeneralUtils.readFileToAString(queriesPath + "insereIssueQuery.sql")
                 .replace("$id", id)
                 .replace("$bugTextId", bugTextId);
-        DBUtils.executeUpdate(query);
-    }
-
-    public static void insereIssuesNoteText(){
-        String query = GeneralUtils.readFileToAString(queriesPath + "insereIssueNoteTextQuery.sql");
-        DBUtils.executeUpdate(query);
-    }
-
-    public static void insereIssuesNote(String id, String bugTextId){
-        String query = GeneralUtils.readFileToAString(queriesPath + "insereIssueQuery.sql")
-                .replace("$id", id)
-                .replace("$bugTextId", bugTextId);
-        DBUtils.executeUpdate(query);
-    }
-
-    public static void insereUsuarioDesprotegido(){
-        String query = GeneralUtils.readFileToAString(queriesPath + "insereUsuarioDesprotegidoQuery.sql");
         DBUtils.executeUpdate(query);
     }
 
@@ -120,6 +98,17 @@ public class ConsultasDBSteps {
         String query = GeneralUtils.readFileToAString(queriesPath + "retornaIssuesEspecificoQuery.sql").replace("$nomeProjeto", nomeProjeto);
         dados = DBUtils.getQueryResult(query);
         return dados;
+    }
+
+    //Manipulação dados Users
+    public static void apagaUsuarios(){
+        String query = GeneralUtils.readFileToAString(queriesPath + "apagaUsuariosQuery.sql");
+        DBUtils.executeUpdate(query);
+    }
+
+    public static void insereUsuarioDesprotegido(){
+        String query = GeneralUtils.readFileToAString(queriesPath + "insereUsuarioDesprotegidoQuery.sql");
+        DBUtils.executeUpdate(query);
     }
 
     public static ArrayList<String> retornaUsuarios(){

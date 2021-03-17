@@ -9,8 +9,6 @@ import io.restassured.http.Method;
 public class GetTokenRequests extends RequestRestBase {
     public GetTokenRequests(){
         url= GlobalParameters.URL_TOKEN;
-
-        //requestService = "token/"+usuario+"/"+senha;
         requestService = "/signin";
         method = Method.POST;
 

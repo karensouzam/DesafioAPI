@@ -27,7 +27,6 @@ public class GetIssueFileTests extends TestBase {
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
         softAssert.assertEquals(response.body().jsonPath().get("message").toString(), messagem, "Validação messagem");
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 
     @Test
@@ -46,6 +45,5 @@ public class GetIssueFileTests extends TestBase {
         Assert.assertEquals(response.statusCode(), statusCodeEsperado);
         softAssert.assertEquals(response.body().jsonPath().get("localized").toString(), localized, "Validação messagem");
         softAssert.assertAll();
-        System.out.println(Thread.currentThread().getId());
     }
 }
