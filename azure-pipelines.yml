@@ -1,17 +1,16 @@
 pool: Karen
-jobs:
-- job: Build
-  displayName: Build Maven Project
-  steps:
-  - task: Maven@3
-    displayName: 'Maven Package'
-    inputs:
-      mavenPomFile: 'pom.xml'
-  - task: CopyFiles@2
-    displayName: 'Copy Files to artifact staging directory'
-    inputs:
-      SourceFolder: '$(System.DefaultWorkingDirectory)'
-      Contents: '**/target/*.?(war|jar)'
-      TargetFolder: $(Build.ArtifactStagingDirectory)
-  - upload: $(Build.ArtifactStagingDirectory)
-    artifact: drop
+
+#Your build pipeline references an undefined variable named ‘Parameters.mavenPOMFile’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+steps:
+- task: Maven@3
+  displayName: 'Maven pom.xml'
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'clean test -Denv=qa -Dbrowser=chrome'
+    testResultsFiles: 'target/xml-junit/*.xml'
+    testRunTitle: 'Functional Testing'
+
+- script: 'mvn clean verify'
+  displayName: 'mvn'
+  condition: always()
