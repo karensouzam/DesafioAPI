@@ -7,7 +7,7 @@
 
 Metas
 
--[X] 1.Implementar 50 scripts de testes que manipulem uma aplicação cuja interface é uma API REST. 
+- [X] 1.Implementar 50 scripts de testes que manipulem uma aplicação cuja interface é uma API REST. 
 Todos os testes podem ser vistos na pasta testes e nas respectivas subpastas:
 - Issues
 - Projects
