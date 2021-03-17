@@ -10,7 +10,3 @@ steps:
     goals: 'clean test -Denv=qa -Dbrowser=chrome'
     testResultsFiles: 'target/xml-junit/*.xml'
     testRunTitle: 'Functional Testing'
-
-- script: 'mvn clean verify'
-  displayName: 'mvn'
-  condition: always()
