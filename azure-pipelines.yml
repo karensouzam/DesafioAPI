@@ -11,6 +11,6 @@ steps:
     testResultsFiles: 'target/xml-junit/*.xml'
     testRunTitle: 'Functional Testing'
 
-- script: mvn clean verify
+- script: 'mvn clean verify'
   displayName: 'mvn'
   condition: always()
