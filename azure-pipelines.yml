@@ -8,9 +8,9 @@ steps:
   inputs:
     mavenPomFile: 'pom.xml'
     goals: 'clean test -Denv=qa -Dbrowser=chrome'
-    testResultsFiles: 'target/xml-junit/*.xml'
-    testRunTitle: 'Functional Testing'
-
-- script: 'mvn clean verify'
-  displayName: 'mvn'
-  condition: always()
+    publishJUnitResults: false
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: true
+    sqMavenPluginVersionChoice: 'latest'
