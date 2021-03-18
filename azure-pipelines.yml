@@ -14,3 +14,5 @@ steps:
     effectivePomSkip: false
     sonarQubeRunAnalysis: true
     sqMavenPluginVersionChoice: 'latest'
+- script:
+    mvn clean verify 
