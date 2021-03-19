@@ -6,11 +6,17 @@ steps:
 - task: Maven@3
   displayName: 'Maven pom.xml'
   inputs:
-    mavenPomFile: 'pom.xml'
-    goals: 'clean test -Denv=qa -Dbrowser=chrome'
-    publishJUnitResults: false
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: true
+    mavenPomFile: 'pom.xml' 
+    publishJUnitResults: true 
+    testResultsFiles: '**/surefire-reports/TEST-*.xml' # Required when publishJUnitResults == True
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    mavenVersionOption: Path
+    mavenDirectory: 'C:\Program Files\apache-maven-3.6.3'
+    mavenSetM2Home: true
+    mavenAuthenticateFeed: false 
+    effectivePomSkip: false 
+    sonarQubeRunAnalysis: false 
     sqMavenPluginVersionChoice: 'latest'
+  
