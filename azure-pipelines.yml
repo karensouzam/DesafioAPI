@@ -6,14 +6,17 @@ steps:
 - task: Maven@3
   displayName: 'Maven pom.xml'
   inputs:
-    mavenSetM2Home: true
-    mavenDirectory: 'C:\Users\Karen\.m2\repository'
-    mavenVersionOption: Default
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
+    mavenPomFile: 'pom.xml' 
+    publishJUnitResults: true 
+    testResultsFiles: '**/surefire-reports/TEST-*.xml' # Required when publishJUnitResults == True
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+    mavenVersionOption: Default
+    mavenDirectory: 'C:\Program Files\apache-maven-3.6.3'
+    mavenSetM2Home: true
+    mavenAuthenticateFeed: false 
+    effectivePomSkip: false 
+    sonarQubeRunAnalysis: false 
+    sqMavenPluginVersionChoice: 'latest'
+  
