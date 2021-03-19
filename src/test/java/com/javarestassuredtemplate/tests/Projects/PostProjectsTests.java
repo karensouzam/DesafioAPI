@@ -54,7 +54,7 @@ public class PostProjectsTests extends TestBase {
     public void deveIncluirProjetoComSucessoComDDT() throws IOException {
         SoftAssert softAssert = new SoftAssert();
 
-        String excelPath = "src/test/java/com/javarestassuredtemplate/resources/DadosProjetos.xlsx";
+        String excelPath = "src/test/resources/DadosProjetos.xlsx";
         String sheetName = "Planilha";
         ExcelUtils excel = new ExcelUtils(excelPath, sheetName);
 
