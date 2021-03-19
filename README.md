@@ -1,9 +1,10 @@
 # Desafio testes de API - RestAssured
 - Arquitetura Projeto
     - Linguagem - Java
-    - Orquestrador de testes - Maven 1.7
-    - Relatório de testes automatizados - ExtentReports 4.1.3
-    - Framework interação com API - Rest Assured 4.3.0
+    - Orquestrador de testes - [Maven 3.6.3](https://maven.apache.org/download.cgi)
+    - Relatório de testes automatizados - [ExtentReports 4.1.3](https://mvnrepository.com/artifact/com.aventstack/extentreports/4.1.3)
+    - Framework interação com API - [Rest Assured 4.3.0](https://github.com/rest-assured/rest-assured/wiki/Downloads)
+    - Denpendências do projeto (pom.xml) - [Maven Repository](https://mvnrepository.com/)
 
 Metas
 
