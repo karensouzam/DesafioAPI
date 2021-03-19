@@ -12,7 +12,7 @@ steps:
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
-    mavenVersionOption: Default
+    mavenVersionOption: Path
     mavenDirectory: 'C:\Program Files\apache-maven-3.6.3'
     mavenSetM2Home: true
     mavenAuthenticateFeed: false 
